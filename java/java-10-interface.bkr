@@ -1,0 +1,1547 @@
+{
+    "beaker": "2",
+    "evaluators": [
+        {
+            "name": "HTML",
+            "plugin": "HTML",
+            "view": {
+                "cm": {
+                    "mode": "htmlmixed"
+                }
+            }
+        },
+        {
+            "name": "JavaScript",
+            "plugin": "JavaScript",
+            "view": {
+                "cm": {
+                    "mode": "javascript",
+                    "background": "#FFE0F0"
+                }
+            },
+            "languageVersion": "ES2015"
+        },
+        {
+            "name": "Java",
+            "plugin": "Java",
+            "imports": "com.twosigma.beaker.chart.Color\ncom.twosigma.beaker.chart.GradientColor\ncom.twosigma.beaker.chart.legend.*\ncom.twosigma.beaker.chart.Filter\ncom.twosigma.beaker.BeakerProgressUpdate\ncom.twosigma.beaker.chart.xychart.*\ncom.twosigma.beaker.chart.xychart.plotitem.*\ncom.twosigma.beaker.chart.categoryplot.*\ncom.twosigma.beaker.chart.categoryplot.plotitem.*\ncom.twosigma.beaker.chart.histogram.*\ncom.twosigma.beaker.chart.treemap.*\ncom.twosigma.beaker.chart.treemap.util.*\nnet.sf.jtreemap.swing.*\ncom.twosigma.beaker.NamespaceClient\ncom.twosigma.beaker.chart.heatmap.HeatMap\ncom.twosigma.beaker.jvm.object.*\ncom.twosigma.beaker.easyform.*\ncom.twosigma.beaker.easyform.formitem.*",
+            "view": {
+                "cm": {
+                    "mode": "text/x-java"
+                }
+            }
+        }
+    ],
+    "cells": [
+        {
+            "id": "sectionMGKZ5p",
+            "type": "section",
+            "title": "INTERFACES AND POLYMORPHISM",
+            "level": 1,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "sectionkLxWJG",
+            "type": "section",
+            "title": "***Syntax 1***    Declaring an Interface",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "markdown5wSLUJ",
+            "type": "markdown",
+            "body": [
+                "```Java",
+                "public interface InterfaceName",
+                "{",
+                "  // method headers",
+                "}",
+                "```"
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "markdownZZGqom",
+            "type": "markdown",
+            "body": [
+                "***_Example_***",
+                "```Java",
+                "public interface Measurable",
+                "{",
+                "  // The methods of an interface are automatically public.",
+                "  double getMeasure(); // No implementation is provided",
+                "}",
+                "```"
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "sectionC4DAKJ",
+            "type": "section",
+            "title": "Using Interfaces for Algorithm Reuse",
+            "level": 1,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "sectionBymVrb",
+            "type": "section",
+            "title": "The `Measurable` Interface",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "markdownjlehWe",
+            "type": "markdown",
+            "body": [
+                "พิจารณาการคำนวณค่าเฉลี่ย ซึ่งอาจจะต้องมีการคำนวณลักษณะเดียวกันในหลาย Object <br>",
+                "จึงสร้าง Class Data ที่จัดการการคำนวณ ในรูปแบบของ Library",
+                "",
+                "Class Data อาจมีการ override method average เพื่อคำนวณค่าเฉลี่ยของ Object ที่ต่างกัน"
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "codegg8qbW",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "public class Data {",
+                    "  // คำนวณค่าเฉลี่ยของ attackPoint ของ BlackMagician",
+                    "  public static double average(BlackMagician[] objects)",
+                    "  {",
+                    "    double sum = 0;",
+                    "    for (BlackMagician obj: objects)",
+                    "    {",
+                    "      sum = sum + obj.getAttackPoint();",
+                    "    }",
+                    "    if (objects.length > 0) { return sum / objects.length; }",
+                    "    else { return 0; }",
+                    "  }",
+                    "  ",
+                    "  // คำนวณค่าเฉลี่ยของ ความเร็ว ของ Car",
+                    "  public static double average(Car[] cars)",
+                    "  {",
+                    "    double sum = 0;",
+                    "    for (Car obj: objects)",
+                    "    {",
+                    "      sum = sum + obj.getVelocity();",
+                    "    }",
+                    "    if (objects.length > 0) { return sum / objects.length; }",
+                    "    else { return 0; }",
+                    "  }",
+                    "  ",
+                    "}"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "BeakerDisplay",
+                "pluginName": "Java",
+                "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
+                "elapsedTime": 581
+            },
+            "evaluatorReader": true,
+            "lineCount": 26
+        },
+        {
+            "id": "markdownOxfrEH",
+            "type": "markdown",
+            "body": [
+                "สังเกตว่า Code ในการคำนวณค่าเฉลี่ย แทบจะเหมือนกัน<br>",
+                "ซึ่งไม่ใช่ลักษณะการเขียนโปรแกรมที่ดี",
+                "",
+                "(DRY - Don't Repeat Yourself: อย่าทำอะไรซ้ำๆ เช่น Code ที่มีลักษณะ copy-paste-modify )"
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "sectionBaPhgP",
+            "type": "section",
+            "title": "สร้าง Interface Measurable",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "markdownqdbBi5",
+            "type": "markdown",
+            "body": [
+                "เพื่อบอกว่าในการคำนวณต่าง ๆ ของ Object นั้น จะใช้ค่าของ attribute ใด ในการคำนวณ"
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "codeTS7oyb",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "public interface Measurable {",
+                    "  double getMeasure();",
+                    "}"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": "com.twosigma.beaker.javash.bkr41bc8bfa.Measurable",
+                "selectedType": "Text",
+                "pluginName": "Java",
+                "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
+                "elapsedTime": 584,
+                "height": 0
+            },
+            "evaluatorReader": true,
+            "lineCount": 3
+        },
+        {
+            "id": "sectioniu8UdS",
+            "type": "section",
+            "title": "class Data ที่ใช้ Measurable",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "markdownpj5syv",
+            "type": "markdown",
+            "body": [
+                "ดังนั้น method average ของ Class Data จะสามารถคำนวณค่าเฉลี่ยจาก Object ที่ `implements` Measurable"
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "codedF6Hxa",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "public class Data {",
+                    "  public static double average(Measurable[] objects) {",
+                    "    double sum = 0;",
+                    "    for (Measurable obj: objects) {",
+                    "      sum = sum + obj.getMeasure();",
+                    "    }",
+                    "    if (objects.length > 0) { return sum / objects.length; }",
+                    "    else { return 0; }",
+                    "  }",
+                    "}"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": "com.twosigma.beaker.javash.bkr41bc8bfa.Data",
+                "selectedType": "Text",
+                "pluginName": "Java",
+                "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
+                "elapsedTime": 582,
+                "height": 0
+            },
+            "evaluatorReader": true,
+            "lineCount": 10
+        },
+        {
+            "id": "sectionObXgb4",
+            "type": "section",
+            "title": "***Syntax 2*** Implementing an Interface",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "markdownvOWmua",
+            "type": "markdown",
+            "body": [
+                "```Java",
+                "public class ClassName implements InterfaceName1, InterfaceName2, ...",
+                "{",
+                "  // instance variables (attributes)",
+                "  // methods",
+                "}",
+                "```"
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "markdownxUCTvJ",
+            "type": "markdown",
+            "body": [
+                "***_Example_***",
+                "```Java",
+                "public class BlackMagician implements Measurable",
+                "{",
+                "  private double attackPoint;",
+                "  . . .",
+                "  public double getMeasure() {",
+                "    return attackPoint;",
+                "  }",
+                "  . . .",
+                "}",
+                "```"
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "sectionMMzmoo",
+            "type": "section",
+            "title": "Implementing an Interface Type\n* ใช้ keyword `implements`",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "sectionKkUtAz",
+            "type": "section",
+            "title": "Class Magician",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "codeYv7aBJ",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "public class BlackMagician implements Measurable",
+                    "{",
+                    "  private double attackPoint;",
+                    "  ",
+                    "  public BlackMagician(double attackPoint)",
+                    "  {",
+                    "    this.attackPoint = attackPoint;",
+                    "  }",
+                    "  ",
+                    "  @Override",
+                    "  public double getMeasure()",
+                    "  {",
+                    "    return attackPoint;",
+                    "  }",
+                    "  ",
+                    "}"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": "com.twosigma.beaker.javash.bkr41bc8bfa.BlackMagician",
+                "selectedType": "Text",
+                "pluginName": "Java",
+                "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
+                "elapsedTime": 585,
+                "height": 0
+            },
+            "evaluatorReader": true,
+            "lineCount": 16
+        },
+        {
+            "id": "markdownd1buj7",
+            "type": "markdown",
+            "body": [
+                "Class ที่ `implements` Interface ใด Object ของ Class นั้น ก็จะ `instanceof` Interface Type นั้นด้วย",
+                "```Java",
+                "Measurable magician = new BlackMagician(); // OK",
+                "```",
+                "",
+                "** ไม่สามารถสร้าง Instance ของ Interface **",
+                "```Java",
+                "Measurable meas = new Measurable(); // ERROR",
+                "```"
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "codeGgJwkp",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "Measurable meas = new Measurable();"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": {
+                    "type": "BeakerDisplay",
+                    "innertype": "Error",
+                    "object": [
+                        "ERROR: 1 compilation error(s)",
+                        "",
+                        "error at line 1: com.twosigma.beaker.javash.bkr41bc8bfa.Measurable is abstract; cannot be instantiated",
+                        " Measurable meas = new Measurable()",
+                        "                   ^               ^ ",
+                        "",
+                        ""
+                    ]
+                },
+                "selectedType": "BeakerDisplay",
+                "pluginName": "Java",
+                "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
+                "elapsedTime": 608,
+                "height": 0
+            },
+            "evaluatorReader": true,
+            "lineCount": 1
+        },
+        {
+            "id": "sectionBAFsdh",
+            "type": "section",
+            "title": "Class Car",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "codeFRaX4T",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "public class Car implements Measurable",
+                    "{",
+                    "  private double velocity;",
+                    "  ",
+                    "  public Car(double velocity)",
+                    "  {",
+                    "    this.velocity = velocity;",
+                    "  }",
+                    "  ",
+                    "  @Override",
+                    "  public double getMeasure()",
+                    "  {",
+                    "    return velocity;",
+                    "  }",
+                    "}"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": "com.twosigma.beaker.javash.bkr41bc8bfa.Car",
+                "selectedType": "Text",
+                "pluginName": "Java",
+                "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
+                "elapsedTime": 583,
+                "height": 0
+            },
+            "evaluatorReader": true,
+            "lineCount": 15
+        },
+        {
+            "id": "sectionuf6AAd",
+            "type": "section",
+            "title": "MeasurableTester",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "codeg5JwCW",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "Measurable[] magicians = new Measurable[3];",
+                    "magicians[0] = new BlackMagician(330);",
+                    "magicians[1] = new BlackMagician(240);",
+                    "magicians[2] = new BlackMagician(190);",
+                    "System.out.println(\"Average : \"+ Data.average(magicians));",
+                    "System.out.println(\"Expected: \" + ((double)(330 + 240 + 190)) / 3);"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": {
+                    "type": "Results",
+                    "outputdata": [
+                        {
+                            "type": "out",
+                            "value": "Average : 253.33333333333334\r\nExpected: 253.33333333333334\r\n"
+                        }
+                    ]
+                },
+                "selectedType": "Results",
+                "pluginName": "Java",
+                "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
+                "elapsedTime": 589,
+                "height": 0
+            },
+            "evaluatorReader": true,
+            "lineCount": 6
+        },
+        {
+            "id": "codeexHBpM",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "Car[] cars = new Car[5];",
+                    "cars[0] = new Car(40);",
+                    "cars[1] = new Car(45.5);",
+                    "cars[2] = new Car(63.9);",
+                    "cars[3] = new Car(120.3);",
+                    "cars[4] = new Car(80);",
+                    "System.out.println(\"Average : \" + Data.average(cars));",
+                    "System.out.println(\"Expected: \" + (40 + 45.5 + 63.9 + 120.3 + 80) / 5);"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": {
+                    "type": "Results",
+                    "outputdata": [
+                        {
+                            "type": "out",
+                            "value": "Average : 69.94\r\nExpected: 69.94\r\n"
+                        }
+                    ]
+                },
+                "selectedType": "Results",
+                "pluginName": "Java",
+                "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
+                "elapsedTime": 586,
+                "height": 0
+            },
+            "evaluatorReader": true,
+            "lineCount": 8
+        },
+        {
+            "id": "sectionBtPc4P",
+            "type": "section",
+            "title": "Converting Between Class and Interface Type",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "sectionvttZrM",
+            "type": "section",
+            "title": "Class SuperHero",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "codexyegFG",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "public interface SuperHero {",
+                    "  default void fly() {  // You can implement default method of interface in JAVA 8",
+                    "    System.out.println(\"I beleave, I can fly.\");",
+                    "  }",
+                    "}"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": "com.twosigma.beaker.javash.bkr41bc8bfa.SuperHero",
+                "selectedType": "Text",
+                "pluginName": "Java",
+                "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
+                "elapsedTime": 591,
+                "height": 0
+            },
+            "evaluatorReader": true,
+            "lineCount": 5
+        },
+        {
+            "id": "sectionGodnwH",
+            "type": "section",
+            "title": "Class People",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "codeSjqsuv",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "public class People {",
+                    "  private String name;",
+                    "  ",
+                    "  public People(String name) {",
+                    "    this.name = name;",
+                    "  }",
+                    "  ",
+                    "  @Override",
+                    "  public String toString() {",
+                    "    return name;",
+                    "  }",
+                    "}"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": "com.twosigma.beaker.javash.bkr41bc8bfa.People",
+                "selectedType": "Text",
+                "pluginName": "Java",
+                "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
+                "elapsedTime": 620,
+                "height": 0
+            },
+            "evaluatorReader": true,
+            "lineCount": 12
+        },
+        {
+            "id": "sectionzU6FbG",
+            "type": "section",
+            "title": "Class Avenger",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "code0U2Jyx",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "public class Avenger extends People implements SuperHero {",
+                    "  public Avenger(String name) {",
+                    "    super(name);",
+                    "  }",
+                    "  ",
+                    "  @Override",
+                    "  public void fly() {",
+                    "    System.out.println(this + \" beleve, \" + this + \" can fly.\");",
+                    "  }",
+                    "  ",
+                    "  public void shoot() {",
+                    "    System.out.println(this + \" shoot!\");",
+                    "  }",
+                    "}"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": "com.twosigma.beaker.javash.bkr41bc8bfa.Avenger",
+                "selectedType": "Text",
+                "pluginName": "Java",
+                "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
+                "elapsedTime": 820,
+                "height": 0
+            },
+            "evaluatorReader": true,
+            "lineCount": 14
+        },
+        {
+            "id": "sectione2AgjV",
+            "type": "section",
+            "title": "Dynamic Type Avenger",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "codeZ2yWIF",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "Avenger ironMan = new Avenger(\"Iron Man\");",
+                    "ironMan.fly();",
+                    "ironMan.shoot();",
+                    "SuperHero hero = ironMan;",
+                    "hero.fly();",
+                    "// hero.shoot();",
+                    "// ((Avenger) hero).shoot();"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": {
+                    "type": "Results",
+                    "outputdata": [
+                        {
+                            "type": "out",
+                            "value": "Iron Man beleve, Iron Man can fly.\r\nIron Man shoot!\r\n"
+                        }
+                    ]
+                },
+                "selectedType": "Results",
+                "pluginName": "Java",
+                "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
+                "elapsedTime": 604,
+                "height": 0
+            },
+            "evaluatorReader": true,
+            "lineCount": 7
+        },
+        {
+            "id": "sectionIUQdAn",
+            "type": "section",
+            "title": "Dynamic Type SuperHero",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "code6tOiXA",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "SuperHero hero = new Avenger(\"Spider Man\");",
+                    "hero.fly();",
+                    "hero.shoot();"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": {
+                    "type": "BeakerDisplay",
+                    "innertype": "Error",
+                    "object": [
+                        "ERROR: 1 compilation error(s)",
+                        "",
+                        "error at line 3: cannot find symbol",
+                        "  symbol:   method shoot()",
+                        "  location: variable hero of type com.twosigma.beaker.javash.bkr41bc8bfa.SuperHero",
+                        " hero.shoot()",
+                        " ^         ^   ",
+                        "",
+                        ""
+                    ]
+                },
+                "selectedType": "BeakerDisplay",
+                "pluginName": "Java",
+                "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
+                "elapsedTime": 606,
+                "height": 0
+            },
+            "evaluatorReader": true,
+            "lineCount": 3
+        },
+        {
+            "id": "section6yhEhY",
+            "type": "section",
+            "title": "Dynamic Type People",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "codew7TGIb",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "People stanLee = new People(\"Stan Lee\");",
+                    "stanLee.fly();",
+                    "// Can stanLee be SuperHero or Avenger",
+                    ""
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": {
+                    "type": "BeakerDisplay",
+                    "innertype": "Error",
+                    "object": [
+                        "ERROR: 1 compilation error(s)",
+                        "",
+                        "error at line 2: cannot find symbol",
+                        "  symbol:   method fly()",
+                        "  location: variable stanLee of type com.twosigma.beaker.javash.bkr41bc8bfa.People",
+                        " stanLee.fly()",
+                        " ^          ^   ",
+                        "",
+                        ""
+                    ]
+                },
+                "selectedType": "BeakerDisplay",
+                "pluginName": "Java",
+                "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
+                "elapsedTime": 619,
+                "height": 0
+            },
+            "evaluatorReader": true,
+            "lineCount": 4
+        },
+        {
+            "id": "sectionBH8nOQ",
+            "type": "section",
+            "title": "The `Comparable` Interface",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "sectionBPQWH9",
+            "type": "section",
+            "title": "interface Comparable",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "markdownWZyVQv",
+            "type": "markdown",
+            "body": [
+                "* เป็น Interface ใน standard Java Library",
+                "* ประกาศ method `int compareTo(Object otherObject)` ไว้ใน `Comparable` เมื่อใช้งานต้อง override method นี้",
+                "* เรียกใช้ในรูปแบบ `a.compareTo(b)`",
+                "* ถ้า a มาก่อน b ให้ return จำนวนลบ",
+                "* ถ้า a เหมือนกับ b ให้ return 0",
+                "* ถ้า b มาก่อน a ให้ return จำนวนบวก"
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "sectionspvN3B",
+            "type": "section",
+            "title": "ตัวอย่างการ implement Comparable",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "codejurQmM",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "public class BlackMagician implements Comparable",
+                    "{",
+                    "  private String name;",
+                    "  private double attackPoint;",
+                    "  ",
+                    "  public BlackMagician(String name, double attackPoint)",
+                    "  {",
+                    "    this.name = name;",
+                    "    this.attackPoint = attackPoint;",
+                    "  }",
+                    "  ",
+                    "  @Override",
+                    "  public String toString() {",
+                    "    return \"BlackMagician(\" + name + \", \" + attackPoint + \")\";",
+                    "  }",
+                    "  ",
+                    "  @Override",
+                    "  public int compareTo(Object otherObject) ",
+                    "  {",
+                    "    return (int) (attackPoint - ((BlackMagician) otherObject).attackPoint);",
+                    "  }",
+                    "  ",
+                    "}"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": "com.twosigma.beaker.javash.bkr41bc8bfa.BlackMagician",
+                "selectedType": "Text",
+                "pluginName": "Java",
+                "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
+                "elapsedTime": 639,
+                "height": 0
+            },
+            "evaluatorReader": true,
+            "lineCount": 23
+        },
+        {
+            "id": "sectionAuoQeO",
+            "type": "section",
+            "title": "ComparableTester",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "codeMAklje",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "import java.util.Arrays;",
+                    "BlackMagician[] magicians = new BlackMagician[4];",
+                    "magicians[0] = new BlackMagician(\"Lord Voldemort\", 330);",
+                    "magicians[1] = new BlackMagician(\"Bellatrix Lestrange\", 300);",
+                    "magicians[2] = new BlackMagician(\"Draco Malfoy\", 190);",
+                    "magicians[3] = new BlackMagician(\"Severus Snape\", 320);",
+                    "Arrays.sort(magicians);",
+                    "for (BlackMagician magician: magicians) {",
+                    "  System.out.println(magician);",
+                    "}"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": {
+                    "type": "Results",
+                    "outputdata": [
+                        {
+                            "type": "out",
+                            "value": "BlackMagician(Draco Malfoy, 190.0)\r\nBlackMagician(Bellatrix Lestrange, 300.0)\r\nBlackMagician(Severus Snape, 320.0)\r\nBlackMagician(Lord Voldemort, 330.0)\r\n"
+                        }
+                    ]
+                },
+                "selectedType": "Results",
+                "pluginName": "Java",
+                "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
+                "elapsedTime": 629,
+                "height": 0
+            },
+            "evaluatorReader": true,
+            "lineCount": 10
+        },
+        {
+            "id": "sectionaWHKv3",
+            "type": "section",
+            "title": "The `Cloneable` Interface",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "sectionO8YbsX",
+            "type": "section",
+            "title": "Interface Cloneable",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "markdown4IVihT",
+            "type": "markdown",
+            "body": [
+                "* เป็น Interface ใน standard Java Library",
+                "* ไม่ประกาศ method ใด ไว้ใน `Cloneable` แต่ต้อง implements เมื่อ override method `clone()`",
+                "* เรียกใช้ในรูปแบบ `b = a.clone();`"
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "markdownpDnGCZ",
+            "type": "markdown",
+            "body": [
+                "### method Object.clone",
+                "Class Object มี method clone() แต่จะเรียกใช้ได้ เมื่อ Subclass implements Cloneable",
+                "```Java",
+                "public class Object",
+                "{",
+                "  protected Object clone() throws CloneNotSupportedException",
+                "  {",
+                "      if (this instanceof Cloneable)",
+                "      {",
+                "          // Copy the instance variables",
+                "          . . .",
+                "      } else {",
+                "          throw new CloneNotSupportedException();",
+                "      }",
+                "  }",
+                "}",
+                "```"
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "section5t3F1o",
+            "type": "section",
+            "title": "ตัวอย่างการ Implement method clone()",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "code2bffVj",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "public class BlackMagician implements Cloneable",
+                    "{",
+                    "  private String name;",
+                    "  private double attackPoint;",
+                    "  ",
+                    "  public BlackMagician(String name, double attackPoint)",
+                    "  {",
+                    "    this.name = name;",
+                    "    this.attackPoint = attackPoint;",
+                    "  }",
+                    "  ",
+                    "  public void setName(String name) {",
+                    "    this.name = name;",
+                    "  }",
+                    "  ",
+                    "  public void setAttackPoint(double attackPoint) {",
+                    "    this.attackPoint = attackPoint; ",
+                    "  }",
+                    "  ",
+                    "  @Override",
+                    "  public String toString() {",
+                    "    return \"BlackMagician(\" + name + \", \" + attackPoint + \")\";",
+                    "  }",
+                    "  ",
+                    "  @Override",
+                    "  public Object clone() ",
+                    "  {",
+                    "    try {",
+                    "      return super.clone();",
+                    "    } catch (CloneNotSupportedException e) {",
+                    "      // Can't happen because we implement Cloneable but we still must catch it.",
+                    "      return null;",
+                    "    }",
+                    "  }",
+                    "  ",
+                    "}"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": "com.twosigma.beaker.javash.bkr41bc8bfa.BlackMagician",
+                "selectedType": "Text",
+                "pluginName": "Java",
+                "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
+                "elapsedTime": 661,
+                "height": 0
+            },
+            "evaluatorReader": true,
+            "lineCount": 36
+        },
+        {
+            "id": "sectionpAT1oS",
+            "type": "section",
+            "title": "CloneableTester",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "markdownIJUzOb",
+            "type": "markdown",
+            "body": [
+                "### ถ้า reference object โดยไม่ clone"
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "codeUCo0Oo",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "BlackMagician magician1 = new BlackMagician(\"Lord Voldemort\", 330);",
+                    "BlackMagician magician2 = magician1;",
+                    "System.out.println(\"magician1: \" + magician1);",
+                    "System.out.println(\"magician2: \" + magician2);",
+                    "magician2.setName(\"Tom Marvolo Riddle\");",
+                    "magician2.setAttackPoint(200);",
+                    "System.out.println(\"After changing magician2\");",
+                    "System.out.println(\"magician1: \" + magician1);",
+                    "System.out.println(\"magician2: \" + magician2);"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": {
+                    "type": "Results",
+                    "outputdata": [
+                        {
+                            "type": "out",
+                            "value": "magician1: BlackMagician(Lord Voldemort, 330.0)\r\nmagician2: BlackMagician(Lord Voldemort, 330.0)\r\nAfter changing magician2\r\nmagician1: BlackMagician(Tom Marvolo Riddle, 200.0)\r\nmagician2: BlackMagician(Tom Marvolo Riddle, 200.0)\r\n"
+                        }
+                    ]
+                },
+                "selectedType": "Results",
+                "pluginName": "Java",
+                "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
+                "elapsedTime": 703,
+                "height": 0
+            },
+            "evaluatorReader": true,
+            "lineCount": 9
+        },
+        {
+            "id": "markdownY24tC8",
+            "type": "markdown",
+            "body": [
+                "### เมื่อใช้การ clone"
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "codeH4BB0w",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "BlackMagician magician1 = new BlackMagician(\"Lord Voldemort\", 330);",
+                    "BlackMagician magician2 = (BlackMagician) magician1.clone();",
+                    "System.out.println(\"magician1: \" + magician1);",
+                    "System.out.println(\"magician2: \" + magician2);",
+                    "magician2.setName(\"Tom Marvolo Riddle\");",
+                    "magician2.setAttackPoint(200);",
+                    "System.out.println(\"After changing magician2\");",
+                    "System.out.println(\"magician1: \" + magician1);",
+                    "System.out.println(\"magician2: \" + magician2);"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": {
+                    "type": "Results",
+                    "outputdata": [
+                        {
+                            "type": "out",
+                            "value": "magician1: BlackMagician(Lord Voldemort, 330.0)\r\nmagician2: BlackMagician(Lord Voldemort, 330.0)\r\nAfter changing magician2\r\nmagician1: BlackMagician(Lord Voldemort, 330.0)\r\nmagician2: BlackMagician(Tom Marvolo Riddle, 200.0)\r\n"
+                        }
+                    ]
+                },
+                "selectedType": "Results",
+                "pluginName": "Java",
+                "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
+                "elapsedTime": 682,
+                "height": 0
+            },
+            "evaluatorReader": true,
+            "lineCount": 9
+        },
+        {
+            "id": "sectionqe7fiA",
+            "type": "section",
+            "title": "Shallow Copy",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "markdownqXrOKB",
+            "type": "markdown",
+            "body": [
+                "## The `Object.clone` method makes a shallow copy",
+                "",
+                "In general, implementing the `clone` method require these steps:",
+                "1. Make the class implement the `Cloneable` interface type.",
+                "2. In the `clone` method, call `super.clone()`. Catch the `CloneNoteSupportedException` if the superclass is `Object`.",
+                "3. Clone any mutable instance variables.",
+                "",
+                "```Java",
+                "public class BlackMagician implements Cloneable",
+                "{",
+                "    private String name;",
+                "    private double attackPoint;",
+                "    private double defensePoint;",
+                "    private int level;",
+                "    private double hitPoint;",
+                "    private Weapon leftHandWeapon;",
+                "    private Weapon rightHandWeapon;",
+                "    . . .",
+                "    @Override",
+                "    public Object clone()",
+                "    {",
+                "        try {",
+                "            BlackMagician cloned = super.clone();",
+                "            cloned.leftHandWeapon = (Weapon) leftHandWeapon.clone();",
+                "            cloned.rightHandWeapon = (Weapon) rightHandWeapon.clone();",
+                "            return cloned;",
+                "        } catch (CloneNotSupportedException e) {",
+                "            return null;",
+                "        }",
+                "    }",
+                "}",
+                "```"
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "sectionc82WIn",
+            "type": "section",
+            "title": "Using Interfaces for Callbacks",
+            "level": 1,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "section2C8Dyb",
+            "type": "section",
+            "title": "ข้อจำกัดของ interface `Measurable`",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "markdowngkrxMX",
+            "type": "markdown",
+            "body": [
+                "1. คุณสามารถเพิ่ม interface `Measurable` ไปใน classes ที่คุณเขียนเอง <br>",
+                "แต่ถ้าคุณจะจัดการ class `Rectangle` (หรือ class ของ package อื่น) ให้ implements interface `Measurable` ด้วย คุณทำไม่ได้ เพราะ `Rectangle` เป็น library class ซึ่งเปลี่ยนแปลงไม่ได้<br>",
+                "2. คุณสามารถคำนวณผ่าน getMeasure() ได้เพียงค่าเดียว <br>",
+                "ถ้าต้องการคำนวณทั้งค่าเฉลี่ยของ attackPoint และ defensePoint จะทำอย่างไร?"
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "sectionH9vJ40",
+            "type": "section",
+            "title": "The `Measurer` Interface",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "sectionPUwzOQ",
+            "type": "section",
+            "title": "interface Measurer",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "codeoCZ7X2",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "public interface Measurer",
+                    "{",
+                    "  /** ",
+                    "    Computes the measure of an object.",
+                    "    @param anObject the object to be measured",
+                    "    @return the measure",
+                    "  */",
+                    "  double measure(Object anObject);",
+                    "}"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": "com.twosigma.beaker.javash.bkr41bc8bfa.Measurer",
+                "selectedType": "Text",
+                "pluginName": "Java",
+                "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
+                "elapsedTime": 673,
+                "height": 0
+            },
+            "evaluatorReader": true,
+            "lineCount": 9
+        },
+        {
+            "id": "sectionml7o2e",
+            "type": "section",
+            "title": "Class Data ที่ใช้ Measurer",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "code2OegLh",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "public class Data",
+                    "{",
+                    "  /** ",
+                    "    Computes the average of the measures of the given objects.",
+                    "    @param objects an array of objects",
+                    "    @param meas the measurer for the objects",
+                    "    @return the average of the measures",
+                    "  */",
+                    "  public static double average(Object[] objects, Measurer meas)",
+                    "  {",
+                    "    double sum = 0;",
+                    "    for (Object obj: objects) {",
+                    "      sum = sum + meas.measure(obj);",
+                    "    }",
+                    "    if (objects.length > 0) { return sum / objects.length; }",
+                    "    else { return 0; }",
+                    "  }",
+                    "}"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": "com.twosigma.beaker.javash.bkr41bc8bfa.Data",
+                "selectedType": "Text",
+                "pluginName": "Java",
+                "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
+                "elapsedTime": 670,
+                "height": 0
+            },
+            "evaluatorReader": true,
+            "lineCount": 18
+        },
+        {
+            "id": "sectionLRerUJ",
+            "type": "section",
+            "title": "class AreaMeasurer เพื่อคำนวณพื้นที่ของรูปสี่เหลี่ยม",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "codepzMBpf",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "import java.awt.Rectangle;",
+                    "",
+                    "public class AreaMeasurer implements Measurer",
+                    "{",
+                    "  @Override",
+                    "  public double measure(Object anObject) {",
+                    "    Rectangle rec = (Rectangle) anObject;",
+                    "    double area = rec.getWidth() * rec.getHeight();",
+                    "    return area;",
+                    "  }",
+                    "}"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": "com.twosigma.beaker.javash.bkr41bc8bfa.AreaMeasurer",
+                "selectedType": "Text",
+                "pluginName": "Java",
+                "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
+                "elapsedTime": 680,
+                "height": 0
+            },
+            "evaluatorReader": true,
+            "lineCount": 11
+        },
+        {
+            "id": "sectionyYAVt5",
+            "type": "section",
+            "title": "Rectangle Measurer Tester",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "code6jFDNJ",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "import java.awt.Rectangle;",
+                    "",
+                    "Rectangle[] rects = new Rectangle[]",
+                    "  {",
+                    "    new Rectangle(5, 10, 20, 30),",
+                    "    new Rectangle(10, 20, 30, 40),",
+                    "    new Rectangle(20, 30, 5, 15)",
+                    "  };",
+                    "",
+                    "double averageArea = Data.average(rects, new AreaMeasurer());",
+                    "System.out.println(\"Average : \" + averageArea);",
+                    "System.out.println(\"Expected: 625\"); "
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": {
+                    "type": "Results",
+                    "outputdata": [
+                        {
+                            "type": "out",
+                            "value": "Average : 625.0\r\nExpected: 625\r\n"
+                        }
+                    ]
+                },
+                "selectedType": "Results",
+                "pluginName": "Java",
+                "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
+                "elapsedTime": 682,
+                "height": 0
+            },
+            "evaluatorReader": true,
+            "lineCount": 12
+        },
+        {
+            "id": "section0KXuBP",
+            "type": "section",
+            "title": "Inner Classes",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "markdownW7bbX9",
+            "type": "markdown",
+            "body": [
+                "`AreaMeasurer` ถูกสร้างขึ้นเพื่อคำนวณช่วงสั้น ๆ และใช้ได้กับ object ของ class `Rectangle` เท่านั้น<br>",
+                "ดังนั้นการประกาศเป็น inner class น่าจะเหมาะสมกว่า",
+                "```Java",
+                "public class MeasurerTester",
+                "{",
+                "  public static void main(String[] args)",
+                "  {",
+                "    class AreaMeasurer implements Measurer",
+                "    {",
+                "      . . .",
+                "    }",
+                "    . . .",
+                "    Measurer areaMeas = new AreaMeasurer();",
+                "    double averageArea = Data.average(rects, areaMeas);",
+                "    . . .",
+                "  }",
+                "}",
+                "```"
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "sectionbkaStS",
+            "type": "section",
+            "title": "Anonymous Classes",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "markdownkjIGMy",
+            "type": "markdown",
+            "body": [
+                "ในการเขียนโปรแกรมบางครั้ง อาจมีการใช้ Class เพียงครั้งเดียว และไม่ต้องการตั้งชื่อ (พบได้บ่อยใน Interface Callback)<br>",
+                "หรือการเพิ่มข้อมูลลงไปใน ArrayList",
+                "",
+                "```Java",
+                "ArrayList<Student> students = new ArrayList<Student>();",
+                "Student student1 = new Student(\"Jack Daniel\", 30);",
+                "students.add(student1);",
+                "```",
+                "",
+                "เราสามารถแทนด้วย",
+                "",
+                "```Java",
+                "ArrayList<Student> students = new ArrayList<Student>();",
+                "students.add(new Student(\"Jack Daniel\", 30));",
+                "```",
+                "",
+                "การไม่ประกาศชื่อ เรียกว่า Anonymous"
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "sectionUM79Jy",
+            "type": "section",
+            "title": "ตัวอย่าง Anonymous ของ Measurer",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "markdown7HBzci",
+            "type": "markdown",
+            "body": [
+                "Construct an object of an anonymous class"
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "codedrztmv",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "import java.awt.Rectangle;",
+                    "",
+                    "Rectangle[] rects = new Rectangle[]",
+                    "  {",
+                    "    new Rectangle(5, 10, 20, 30),",
+                    "    new Rectangle(10, 20, 30, 40),",
+                    "    new Rectangle(20, 30, 5, 15)",
+                    "  };",
+                    "",
+                    "Measurer m = new Measurer()",
+                    "  {",
+                    "    // class declaration starts here",
+                    "    @Override",
+                    "    public double measure(Object anObject) ",
+                    "    {",
+                    "      Rectangle rect = (Rectangle) anObject;",
+                    "      return rect.getWidth() * rect.getHeight();",
+                    "    }",
+                    "  }; // don't forget semi-colon after anonymous class",
+                    "",
+                    "double averageArea = Data.average(rects, m);",
+                    "System.out.println(\"Average : \" + averageArea);",
+                    "System.out.println(\"Expected: 625\"); "
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": {
+                    "type": "Results",
+                    "outputdata": [
+                        {
+                            "type": "out",
+                            "value": "Average : 625.0\r\nExpected: 625\r\n"
+                        }
+                    ]
+                },
+                "selectedType": "Results",
+                "pluginName": "Java",
+                "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
+                "elapsedTime": 687,
+                "height": 0
+            },
+            "evaluatorReader": true,
+            "lineCount": 23
+        },
+        {
+            "id": "markdownMqGl1C",
+            "type": "markdown",
+            "body": [
+                "Or"
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "codeQv8WjF",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "import java.awt.Rectangle;",
+                    "",
+                    "Rectangle[] rects = new Rectangle[]",
+                    "  {",
+                    "    new Rectangle(5, 10, 20, 30),",
+                    "    new Rectangle(10, 20, 30, 40),",
+                    "    new Rectangle(20, 30, 5, 15)",
+                    "  };",
+                    "",
+                    "double averageArea = Data.average(rects, new Measurer() {",
+                    "    // class declaration starts here",
+                    "    @Override",
+                    "    public double measure(Object anObject) ",
+                    "    {",
+                    "      Rectangle rect = (Rectangle) anObject;",
+                    "      return rect.getWidth() * rect.getHeight();",
+                    "    }",
+                    "});",
+                    "System.out.println(\"Average : \" + averageArea);",
+                    "System.out.println(\"Expected: 625\"); "
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": {
+                    "type": "Results",
+                    "outputdata": [
+                        {
+                            "type": "out",
+                            "value": "Average : 625.0\r\nExpected: 625\r\n"
+                        }
+                    ]
+                },
+                "selectedType": "Results",
+                "pluginName": "Java",
+                "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
+                "elapsedTime": 696,
+                "height": 0
+            },
+            "evaluatorReader": true,
+            "lineCount": 20
+        }
+    ],
+    "namespace": {}
+}
