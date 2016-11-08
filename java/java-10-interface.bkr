@@ -142,8 +142,7 @@
                 "state": {},
                 "selectedType": "BeakerDisplay",
                 "pluginName": "Java",
-                "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
-                "elapsedTime": 581
+                "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a"
             },
             "evaluatorReader": true,
             "lineCount": 26
@@ -188,11 +187,9 @@
             },
             "output": {
                 "state": {},
-                "result": "com.twosigma.beaker.javash.bkr41bc8bfa.Measurable",
                 "selectedType": "Text",
                 "pluginName": "Java",
                 "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
-                "elapsedTime": 584,
                 "height": 0
             },
             "evaluatorReader": true,
@@ -234,11 +231,9 @@
             },
             "output": {
                 "state": {},
-                "result": "com.twosigma.beaker.javash.bkr41bc8bfa.Data",
                 "selectedType": "Text",
                 "pluginName": "Java",
                 "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
-                "elapsedTime": 582,
                 "height": 0
             },
             "evaluatorReader": true,
@@ -327,11 +322,9 @@
             },
             "output": {
                 "state": {},
-                "result": "com.twosigma.beaker.javash.bkr41bc8bfa.BlackMagician",
                 "selectedType": "Text",
                 "pluginName": "Java",
                 "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
-                "elapsedTime": 585,
                 "height": 0
             },
             "evaluatorReader": true,
@@ -364,23 +357,9 @@
             },
             "output": {
                 "state": {},
-                "result": {
-                    "type": "BeakerDisplay",
-                    "innertype": "Error",
-                    "object": [
-                        "ERROR: 1 compilation error(s)",
-                        "",
-                        "error at line 1: com.twosigma.beaker.javash.bkr41bc8bfa.Measurable is abstract; cannot be instantiated",
-                        " Measurable meas = new Measurable()",
-                        "                   ^               ^ ",
-                        "",
-                        ""
-                    ]
-                },
                 "selectedType": "BeakerDisplay",
                 "pluginName": "Java",
                 "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
-                "elapsedTime": 608,
                 "height": 0
             },
             "evaluatorReader": true,
@@ -419,11 +398,9 @@
             },
             "output": {
                 "state": {},
-                "result": "com.twosigma.beaker.javash.bkr41bc8bfa.Car",
                 "selectedType": "Text",
                 "pluginName": "Java",
                 "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
-                "elapsedTime": 583,
                 "height": 0
             },
             "evaluatorReader": true,
@@ -453,19 +430,9 @@
             },
             "output": {
                 "state": {},
-                "result": {
-                    "type": "Results",
-                    "outputdata": [
-                        {
-                            "type": "out",
-                            "value": "Average : 253.33333333333334\r\nExpected: 253.33333333333334\r\n"
-                        }
-                    ]
-                },
                 "selectedType": "Results",
                 "pluginName": "Java",
                 "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
-                "elapsedTime": 589,
                 "height": 0
             },
             "evaluatorReader": true,
@@ -489,19 +456,9 @@
             },
             "output": {
                 "state": {},
-                "result": {
-                    "type": "Results",
-                    "outputdata": [
-                        {
-                            "type": "out",
-                            "value": "Average : 69.94\r\nExpected: 69.94\r\n"
-                        }
-                    ]
-                },
                 "selectedType": "Results",
                 "pluginName": "Java",
                 "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
-                "elapsedTime": 586,
                 "height": 0
             },
             "evaluatorReader": true,
@@ -510,7 +467,7 @@
         {
             "id": "sectionBtPc4P",
             "type": "section",
-            "title": "Converting Between Class and Interface Type",
+            "title": "Converting Between Class and Interface Type (Polymorphism)",
             "level": 2,
             "evaluatorReader": false,
             "collapsed": true
@@ -531,18 +488,16 @@
                 "body": [
                     "public interface SuperHero {",
                     "  default void fly() {  // You can implement default method of interface in JAVA 8",
-                    "    System.out.println(\"I beleave, I can fly.\");",
+                    "    System.out.println(\"I believe, I can fly.\");",
                     "  }",
                     "}"
                 ]
             },
             "output": {
                 "state": {},
-                "result": "com.twosigma.beaker.javash.bkr41bc8bfa.SuperHero",
                 "selectedType": "Text",
                 "pluginName": "Java",
-                "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
-                "elapsedTime": 591,
+                "shellId": "bacd4862-821a-41c4-82b4-b95652745fca",
                 "height": 0
             },
             "evaluatorReader": true,
@@ -578,11 +533,9 @@
             },
             "output": {
                 "state": {},
-                "result": "com.twosigma.beaker.javash.bkr41bc8bfa.People",
                 "selectedType": "Text",
                 "pluginName": "Java",
-                "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
-                "elapsedTime": 620,
+                "shellId": "bacd4862-821a-41c4-82b4-b95652745fca",
                 "height": 0
             },
             "evaluatorReader": true,
@@ -609,7 +562,7 @@
                     "  ",
                     "  @Override",
                     "  public void fly() {",
-                    "    System.out.println(this + \" beleve, \" + this + \" can fly.\");",
+                    "    System.out.println(this + \" believe, \" + this + \" can fly.\");",
                     "  }",
                     "  ",
                     "  public void shoot() {",
@@ -620,11 +573,9 @@
             },
             "output": {
                 "state": {},
-                "result": "com.twosigma.beaker.javash.bkr41bc8bfa.Avenger",
                 "selectedType": "Text",
                 "pluginName": "Java",
-                "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
-                "elapsedTime": 820,
+                "shellId": "bacd4862-821a-41c4-82b4-b95652745fca",
                 "height": 0
             },
             "evaluatorReader": true,
@@ -655,19 +606,9 @@
             },
             "output": {
                 "state": {},
-                "result": {
-                    "type": "Results",
-                    "outputdata": [
-                        {
-                            "type": "out",
-                            "value": "Iron Man beleve, Iron Man can fly.\r\nIron Man shoot!\r\n"
-                        }
-                    ]
-                },
                 "selectedType": "Results",
                 "pluginName": "Java",
-                "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
-                "elapsedTime": 604,
+                "shellId": "bacd4862-821a-41c4-82b4-b95652745fca",
                 "height": 0
             },
             "evaluatorReader": true,
@@ -689,34 +630,19 @@
                 "body": [
                     "SuperHero hero = new Avenger(\"Spider Man\");",
                     "hero.fly();",
-                    "hero.shoot();"
+                    "// hero can not shoot",
+                    "// hero.shoot();"
                 ]
             },
             "output": {
                 "state": {},
-                "result": {
-                    "type": "BeakerDisplay",
-                    "innertype": "Error",
-                    "object": [
-                        "ERROR: 1 compilation error(s)",
-                        "",
-                        "error at line 3: cannot find symbol",
-                        "  symbol:   method shoot()",
-                        "  location: variable hero of type com.twosigma.beaker.javash.bkr41bc8bfa.SuperHero",
-                        " hero.shoot()",
-                        " ^         ^   ",
-                        "",
-                        ""
-                    ]
-                },
-                "selectedType": "BeakerDisplay",
+                "selectedType": "Results",
                 "pluginName": "Java",
-                "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
-                "elapsedTime": 606,
+                "shellId": "bacd4862-821a-41c4-82b4-b95652745fca",
                 "height": 0
             },
             "evaluatorReader": true,
-            "lineCount": 3
+            "lineCount": 4
         },
         {
             "id": "section6yhEhY",
@@ -733,6 +659,7 @@
             "input": {
                 "body": [
                     "People stanLee = new People(\"Stan Lee\");",
+                    "// stanLee can not fly",
                     "stanLee.fly();",
                     "// Can stanLee be SuperHero or Avenger",
                     ""
@@ -740,29 +667,13 @@
             },
             "output": {
                 "state": {},
-                "result": {
-                    "type": "BeakerDisplay",
-                    "innertype": "Error",
-                    "object": [
-                        "ERROR: 1 compilation error(s)",
-                        "",
-                        "error at line 2: cannot find symbol",
-                        "  symbol:   method fly()",
-                        "  location: variable stanLee of type com.twosigma.beaker.javash.bkr41bc8bfa.People",
-                        " stanLee.fly()",
-                        " ^          ^   ",
-                        "",
-                        ""
-                    ]
-                },
                 "selectedType": "BeakerDisplay",
                 "pluginName": "Java",
                 "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
-                "elapsedTime": 619,
                 "height": 0
             },
             "evaluatorReader": true,
-            "lineCount": 4
+            "lineCount": 5
         },
         {
             "id": "sectionBH8nOQ",
@@ -834,11 +745,9 @@
             },
             "output": {
                 "state": {},
-                "result": "com.twosigma.beaker.javash.bkr41bc8bfa.BlackMagician",
                 "selectedType": "Text",
                 "pluginName": "Java",
                 "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
-                "elapsedTime": 639,
                 "height": 0
             },
             "evaluatorReader": true,
@@ -872,19 +781,9 @@
             },
             "output": {
                 "state": {},
-                "result": {
-                    "type": "Results",
-                    "outputdata": [
-                        {
-                            "type": "out",
-                            "value": "BlackMagician(Draco Malfoy, 190.0)\r\nBlackMagician(Bellatrix Lestrange, 300.0)\r\nBlackMagician(Severus Snape, 320.0)\r\nBlackMagician(Lord Voldemort, 330.0)\r\n"
-                        }
-                    ]
-                },
                 "selectedType": "Results",
                 "pluginName": "Java",
                 "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
-                "elapsedTime": 629,
                 "height": 0
             },
             "evaluatorReader": true,
@@ -994,11 +893,9 @@
             },
             "output": {
                 "state": {},
-                "result": "com.twosigma.beaker.javash.bkr41bc8bfa.BlackMagician",
                 "selectedType": "Text",
                 "pluginName": "Java",
                 "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
-                "elapsedTime": 661,
                 "height": 0
             },
             "evaluatorReader": true,
@@ -1039,19 +936,9 @@
             },
             "output": {
                 "state": {},
-                "result": {
-                    "type": "Results",
-                    "outputdata": [
-                        {
-                            "type": "out",
-                            "value": "magician1: BlackMagician(Lord Voldemort, 330.0)\r\nmagician2: BlackMagician(Lord Voldemort, 330.0)\r\nAfter changing magician2\r\nmagician1: BlackMagician(Tom Marvolo Riddle, 200.0)\r\nmagician2: BlackMagician(Tom Marvolo Riddle, 200.0)\r\n"
-                        }
-                    ]
-                },
                 "selectedType": "Results",
                 "pluginName": "Java",
                 "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
-                "elapsedTime": 703,
                 "height": 0
             },
             "evaluatorReader": true,
@@ -1084,19 +971,9 @@
             },
             "output": {
                 "state": {},
-                "result": {
-                    "type": "Results",
-                    "outputdata": [
-                        {
-                            "type": "out",
-                            "value": "magician1: BlackMagician(Lord Voldemort, 330.0)\r\nmagician2: BlackMagician(Lord Voldemort, 330.0)\r\nAfter changing magician2\r\nmagician1: BlackMagician(Lord Voldemort, 330.0)\r\nmagician2: BlackMagician(Tom Marvolo Riddle, 200.0)\r\n"
-                        }
-                    ]
-                },
                 "selectedType": "Results",
                 "pluginName": "Java",
                 "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
-                "elapsedTime": 682,
                 "height": 0
             },
             "evaluatorReader": true,
@@ -1211,11 +1088,9 @@
             },
             "output": {
                 "state": {},
-                "result": "com.twosigma.beaker.javash.bkr41bc8bfa.Measurer",
                 "selectedType": "Text",
                 "pluginName": "Java",
                 "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
-                "elapsedTime": 673,
                 "height": 0
             },
             "evaluatorReader": true,
@@ -1257,11 +1132,9 @@
             },
             "output": {
                 "state": {},
-                "result": "com.twosigma.beaker.javash.bkr41bc8bfa.Data",
                 "selectedType": "Text",
                 "pluginName": "Java",
                 "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
-                "elapsedTime": 670,
                 "height": 0
             },
             "evaluatorReader": true,
@@ -1296,11 +1169,9 @@
             },
             "output": {
                 "state": {},
-                "result": "com.twosigma.beaker.javash.bkr41bc8bfa.AreaMeasurer",
                 "selectedType": "Text",
                 "pluginName": "Java",
                 "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
-                "elapsedTime": 680,
                 "height": 0
             },
             "evaluatorReader": true,
@@ -1336,19 +1207,9 @@
             },
             "output": {
                 "state": {},
-                "result": {
-                    "type": "Results",
-                    "outputdata": [
-                        {
-                            "type": "out",
-                            "value": "Average : 625.0\r\nExpected: 625\r\n"
-                        }
-                    ]
-                },
                 "selectedType": "Results",
                 "pluginName": "Java",
                 "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
-                "elapsedTime": 682,
                 "height": 0
             },
             "evaluatorReader": true,
@@ -1468,19 +1329,9 @@
             },
             "output": {
                 "state": {},
-                "result": {
-                    "type": "Results",
-                    "outputdata": [
-                        {
-                            "type": "out",
-                            "value": "Average : 625.0\r\nExpected: 625\r\n"
-                        }
-                    ]
-                },
                 "selectedType": "Results",
                 "pluginName": "Java",
                 "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
-                "elapsedTime": 687,
                 "height": 0
             },
             "evaluatorReader": true,
@@ -1524,19 +1375,9 @@
             },
             "output": {
                 "state": {},
-                "result": {
-                    "type": "Results",
-                    "outputdata": [
-                        {
-                            "type": "out",
-                            "value": "Average : 625.0\r\nExpected: 625\r\n"
-                        }
-                    ]
-                },
                 "selectedType": "Results",
                 "pluginName": "Java",
                 "shellId": "41bc8bfa-fb80-461e-a76c-b51b16bb4f7a",
-                "elapsedTime": 696,
                 "height": 0
             },
             "evaluatorReader": true,
