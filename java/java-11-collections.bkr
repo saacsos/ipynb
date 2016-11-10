@@ -1,0 +1,1398 @@
+{
+    "beaker": "2",
+    "evaluators": [
+        {
+            "name": "HTML",
+            "plugin": "HTML",
+            "view": {
+                "cm": {
+                    "mode": "htmlmixed"
+                }
+            }
+        },
+        {
+            "name": "JavaScript",
+            "plugin": "JavaScript",
+            "view": {
+                "cm": {
+                    "mode": "javascript",
+                    "background": "#FFE0F0"
+                }
+            },
+            "languageVersion": "ES2015"
+        },
+        {
+            "name": "Java",
+            "plugin": "Java",
+            "imports": "com.twosigma.beaker.chart.Color\ncom.twosigma.beaker.chart.GradientColor\ncom.twosigma.beaker.chart.legend.*\ncom.twosigma.beaker.chart.Filter\ncom.twosigma.beaker.BeakerProgressUpdate\ncom.twosigma.beaker.chart.xychart.*\ncom.twosigma.beaker.chart.xychart.plotitem.*\ncom.twosigma.beaker.chart.categoryplot.*\ncom.twosigma.beaker.chart.categoryplot.plotitem.*\ncom.twosigma.beaker.chart.histogram.*\ncom.twosigma.beaker.chart.treemap.*\ncom.twosigma.beaker.chart.treemap.util.*\nnet.sf.jtreemap.swing.*\ncom.twosigma.beaker.NamespaceClient\ncom.twosigma.beaker.chart.heatmap.HeatMap\ncom.twosigma.beaker.jvm.object.*\ncom.twosigma.beaker.easyform.*\ncom.twosigma.beaker.easyform.formitem.*",
+            "view": {
+                "cm": {
+                    "mode": "text/x-java"
+                }
+            }
+        }
+    ],
+    "cells": [
+        {
+            "id": "sectionmBYkDI",
+            "type": "section",
+            "title": "Java Collections Framework",
+            "level": 1,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "section0L4Xs1",
+            "type": "section",
+            "title": "Interfaces and Classes in the Java Collections Framework",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "markdown2hQJs6",
+            "type": "markdown",
+            "body": [
+                "# interface `Collection`",
+                "package `java.util.Collection`",
+                "",
+                "<img src=\"http://www.w3resource.com/java-tutorial/images/java-collections.png\"><br/>",
+                "source: http://www.w3resource.com/java-tutorial/java-collections.php",
+                "",
+                "# interface `Map`",
+                "package `java.util.Map`",
+                "",
+                "<img src=\"http://www.w3resource.com/java-tutorial/images/java-collections1.png\"><br/>",
+                "source: http://www.w3resource.com/java-tutorial/java-collections.php"
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "sectionBBUnR9",
+            "type": "section",
+            "title": "The Methods of the `Collection` interface",
+            "level": 1,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "sectionl3PwPu",
+            "type": "section",
+            "title": "The `ArrayList` class implements the `Collection` interface",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "codeuVKT4c",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "import java.util.Collection;",
+                    "import java.util.ArrayList;",
+                    "",
+                    "// The `ArrayList` class implements the `Collection` interface",
+                    "Collection<String> coll = new ArrayList<String>();",
+                    "",
+                    "System.out.println(coll);"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Results",
+                "pluginName": "Java",
+                "shellId": "f3622414-43fe-485b-b19f-fec7dc5be7c0"
+            },
+            "evaluatorReader": true,
+            "lineCount": 7
+        },
+        {
+            "id": "sectionPpu1E2",
+            "type": "section",
+            "title": "The `TreeSet` class also implements the `Collection` interface",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "codesnYz1I",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "import java.util.Collection;",
+                    "import java.util.TreeSet;",
+                    "",
+                    "// The `TreeSet` class also implements the `Collection` interface",
+                    "Collection<String> coll = new TreeSet<String>();",
+                    "",
+                    "System.out.println(coll);"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Results",
+                "pluginName": "Java",
+                "shellId": "f3622414-43fe-485b-b19f-fec7dc5be7c0"
+            },
+            "evaluatorReader": true,
+            "lineCount": 7
+        },
+        {
+            "id": "sectionxOt73Z",
+            "type": "section",
+            "title": "`size()` Get the size of the collection",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "codeEDB4jg",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "import java.util.Collection;",
+                    "import java.util.TreeSet;",
+                    "",
+                    "Collection<String> coll = new TreeSet<String>();",
+                    "",
+                    "// Get the size of the collection",
+                    "int n = coll.size();",
+                    "",
+                    "System.out.println(\"Size of coll is \" + n);"
+                ]
+            },
+            "output": {
+                "selectedType": "Results",
+                "pluginName": "Java",
+                "shellId": "f3622414-43fe-485b-b19f-fec7dc5be7c0",
+                "state": {}
+            },
+            "evaluatorReader": true,
+            "lineCount": 9
+        },
+        {
+            "id": "sectionnBsn4a",
+            "type": "section",
+            "title": "`add()` Adds elements to the collection",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "codeokTju0",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "import java.util.Collection;",
+                    "import java.util.TreeSet;",
+                    "",
+                    "Collection<String> coll = new TreeSet<String>();",
+                    "",
+                    "// Adds elements to the collection",
+                    "coll.add(\"Harry\");",
+                    "coll.add(\"Sally\");",
+                    "",
+                    "System.out.println(\"coll: \" + coll);",
+                    "System.out.println(\"Size of coll is \" + coll.size());"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Results",
+                "pluginName": "Java",
+                "shellId": "f3622414-43fe-485b-b19f-fec7dc5be7c0"
+            },
+            "evaluatorReader": true,
+            "lineCount": 11
+        },
+        {
+            "id": "sectionveWKlg",
+            "type": "section",
+            "title": "`toString()` Returns a string with all elements in the collection",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "codeTssNBs",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "import java.util.Collection;",
+                    "import java.util.TreeSet;",
+                    "",
+                    "Collection<String> coll = new TreeSet<String>();",
+                    "coll.add(\"Harry\");",
+                    "coll.add(\"Sally\");",
+                    "",
+                    "// Returns a string with all elements in collection",
+                    "String s = coll.toString();",
+                    "",
+                    "System.out.println(\"s: \" + s);"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Results",
+                "pluginName": "Java",
+                "shellId": "f3622414-43fe-485b-b19f-fec7dc5be7c0"
+            },
+            "evaluatorReader": true,
+            "lineCount": 11
+        },
+        {
+            "id": "sectionb3SwJ3",
+            "type": "section",
+            "title": "`remove()` Removes an element from the collection",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "codeKf9YGb",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "import java.util.Collection;",
+                    "import java.util.TreeSet;",
+                    "",
+                    "Collection<String> coll = new TreeSet<String>();",
+                    "coll.add(\"Harry\");",
+                    "coll.add(\"Sally\");",
+                    "coll.add(\"Party\");",
+                    "System.out.println(\"1: \" + coll);",
+                    "",
+                    "// Removes an element from the collection",
+                    "coll.remove(\"Harry\");",
+                    "System.out.println(\"2: \" + coll);",
+                    "",
+                    "// Returning `false` if the element is not present",
+                    "System.out.println(\"3.1: \" + coll.remove(\"Wristly\"));",
+                    "System.out.println(\"3.2: \" + coll);",
+                    "",
+                    "",
+                    "// Returning `true` if the element is present",
+                    "System.out.println(\"4.1: \" + coll.remove(\"Sally\"));",
+                    "System.out.println(\"4.2: \" + coll);"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Results",
+                "pluginName": "Java",
+                "shellId": "f3622414-43fe-485b-b19f-fec7dc5be7c0"
+            },
+            "evaluatorReader": true,
+            "lineCount": 21
+        },
+        {
+            "id": "sectionTj1sec",
+            "type": "section",
+            "title": "`contains()` Checks whether this collection contains  a given element.",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "codeD8S0B0",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "import java.util.Collection;",
+                    "import java.util.TreeSet;",
+                    "",
+                    "Collection<String> coll = new TreeSet<String>();",
+                    "coll.add(\"Harry\");",
+                    "coll.add(\"Sally\");",
+                    "coll.add(\"Party\");",
+                    "",
+                    "// Checks whether this collection contains a given element.",
+                    "System.out.println(\"Sally is in coll: \" + coll.contains(\"Sally\"));",
+                    "System.out.println(\"Wristly is in coll: \" + coll.contains(\"Wristly\"));"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Results",
+                "pluginName": "Java",
+                "shellId": "f3622414-43fe-485b-b19f-fec7dc5be7c0"
+            },
+            "evaluatorReader": true,
+            "lineCount": 11
+        },
+        {
+            "id": "sectionMmlxDO",
+            "type": "section",
+            "title": "You can use the \"for each\" loop with any collection",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "codeYMt4kQ",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "import java.util.Collection;",
+                    "import java.util.TreeSet;",
+                    "",
+                    "Collection<String> coll = new TreeSet<String>();",
+                    "coll.add(\"Harry\");",
+                    "coll.add(\"Sally\");",
+                    "coll.add(\"Party\");",
+                    "",
+                    "// You can use the \"for each\" loop with any collection",
+                    "for (String s : coll) {",
+                    "  System.out.println(s);",
+                    "}"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Results",
+                "pluginName": "Java",
+                "shellId": "f3622414-43fe-485b-b19f-fec7dc5be7c0"
+            },
+            "evaluatorReader": true,
+            "lineCount": 12
+        },
+        {
+            "id": "sectionPJmlII",
+            "type": "section",
+            "title": "`Iterator`",
+            "level": 1,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "sectionsU5OGC",
+            "type": "section",
+            "title": "Methods of the `Iterator` interface",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "sectionGmW5pf",
+            "type": "section",
+            "title": "`next()`",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "code0rfEpV",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "import java.util.Iterator;",
+                    "import java.util.Collection;",
+                    "import java.util.ArrayList;",
+                    "",
+                    "Collection<String> coll = new ArrayList<String>();",
+                    "coll.add(\"Harry\");",
+                    "coll.add(\"Sally\");",
+                    "coll.add(\"Party\");",
+                    "System.out.println(\"1: \" + coll);",
+                    "",
+                    "// Assume that `iter` points to the beginning of the list before calling `next()`",
+                    "Iterator<String> iter = coll.iterator(); // |HSP",
+                    "System.out.println(\"2: \" + iter);",
+                    "",
+                    "// After calling `next()`, `s` is \"Harry\" and the iterator points to the end of \"Harry\"",
+                    "String s = iter.next();        // H|SP",
+                    "System.out.println(\"3: \" + s);",
+                    "",
+                    "// calling `next()`, `s` is \"Sally\" and iter points to the end of \"Sally\"",
+                    "s = iter.next();               // HS|P",
+                    "System.out.println(\"4: \" + s);"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Results",
+                "pluginName": "Java",
+                "shellId": "f3622414-43fe-485b-b19f-fec7dc5be7c0"
+            },
+            "evaluatorReader": true,
+            "lineCount": 21
+        },
+        {
+            "id": "sectionTYhmIM",
+            "type": "section",
+            "title": "`hasNext()`",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "codei1PpSu",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "import java.util.Iterator;",
+                    "import java.util.Collection;",
+                    "import java.util.ArrayList;",
+                    "",
+                    "Collection<String> coll = new ArrayList<String>();",
+                    "coll.add(\"Harry\");",
+                    "coll.add(\"Sally\");",
+                    "coll.add(\"Party\");",
+                    "System.out.println(\"1: \" + coll);",
+                    "Iterator<String> iter = coll.iterator();",
+                    "",
+                    "// Check if iter can point to next element",
+                    "while (iter.hasNext()) {",
+                    "  String s = iter.next();",
+                    "  System.out.println(s);",
+                    "}"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Results",
+                "pluginName": "Java",
+                "shellId": "f3622414-43fe-485b-b19f-fec7dc5be7c0"
+            },
+            "evaluatorReader": true,
+            "lineCount": 16
+        },
+        {
+            "id": "sectiondEcXQm",
+            "type": "section",
+            "title": "`remove()` Remove the last element return by `next()` or `previous()`",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "codehsS0Nr",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "import java.util.Iterator;",
+                    "import java.util.Collection;",
+                    "import java.util.ArrayList;",
+                    "",
+                    "Collection<String> coll = new ArrayList<String>();",
+                    "coll.add(\"Harry\");",
+                    "coll.add(\"Sally\");",
+                    "coll.add(\"Party\");",
+                    "System.out.println(\"1: \" + coll);",
+                    "Iterator<String> iter = coll.iterator();",
+                    "",
+                    "while (iter.hasNext()) {",
+                    "  String s = iter.next();",
+                    "  System.out.println(\"s: \" + s);",
+                    "  iter.remove();",
+                    "  System.out.println(\"coll: \" + coll);",
+                    "}"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Results",
+                "pluginName": "Java",
+                "shellId": "f3622414-43fe-485b-b19f-fec7dc5be7c0"
+            },
+            "evaluatorReader": true,
+            "lineCount": 17
+        },
+        {
+            "id": "markdownOYnZ1m",
+            "type": "markdown",
+            "body": [
+                "`previous()` method ไม่มีใน `Iterator` แต่มีใน `ListedIterator`"
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "section8iTGH0",
+            "type": "section",
+            "title": "`LinkedList`",
+            "level": 1,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "section6Gn7it",
+            "type": "section",
+            "title": "`LinkedList`",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "codeXP5sIC",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "import java.util.LinkedList;",
+                    "",
+                    "LinkedList<String> list = new LinkedList<String>();",
+                    "",
+                    "System.out.println(list);"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Results",
+                "pluginName": "Java",
+                "shellId": "f3622414-43fe-485b-b19f-fec7dc5be7c0"
+            },
+            "evaluatorReader": true,
+            "lineCount": 5
+        },
+        {
+            "id": "sectionBAFIsQ",
+            "type": "section",
+            "title": "`addLast()` same as `add()`",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "codeUpv0zk",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "import java.util.LinkedList;",
+                    "",
+                    "LinkedList<String> list = new LinkedList<String>();",
+                    "System.out.println(\"1: \" + list);",
+                    "",
+                    "list.addLast(\"Harry\");",
+                    "System.out.println(\"2: \" + list);",
+                    "",
+                    "list.add(\"Sally\");",
+                    "System.out.println(\"3: \" + list);",
+                    "",
+                    "list.addLast(\"Party\");",
+                    "System.out.println(\"4: \" + list);"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Results",
+                "pluginName": "Java",
+                "shellId": "f3622414-43fe-485b-b19f-fec7dc5be7c0"
+            },
+            "evaluatorReader": true,
+            "lineCount": 13
+        },
+        {
+            "id": "sectionaHTuts",
+            "type": "section",
+            "title": "`addFirst()` Adds an elements to the beginning of the list",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "codeBXVYxq",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "import java.util.LinkedList;",
+                    "",
+                    "LinkedList<String> list = new LinkedList<String>();",
+                    "list.addLast(\"Harry\");",
+                    "list.add(\"Sally\");",
+                    "list.addLast(\"Party\");",
+                    "System.out.println(\"1: \" + list);",
+                    "",
+                    "// Adds \"Wristly\" to the beginning of the list",
+                    "list.addFirst(\"Wristly\");",
+                    "System.out.println(\"2: \" + list);"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Results",
+                "pluginName": "Java",
+                "shellId": "f3622414-43fe-485b-b19f-fec7dc5be7c0"
+            },
+            "evaluatorReader": true,
+            "lineCount": 11
+        },
+        {
+            "id": "sectioneE57SR",
+            "type": "section",
+            "title": "`getFirst()` Gets the element stored at the beginning of the list",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "code6HDSAg",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "import java.util.LinkedList;",
+                    "",
+                    "LinkedList<String> list = new LinkedList<String>();",
+                    "list.addLast(\"Harry\");",
+                    "list.add(\"Sally\");",
+                    "list.addLast(\"Party\");",
+                    "System.out.println(\"1: \" + list);",
+                    "",
+                    "// Gets the element stored at the beginning of the list",
+                    "String s = list.getFirst();",
+                    "System.out.println(\"2: \" + s);",
+                    "",
+                    "System.out.println(\"3: \" + list);"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Results",
+                "pluginName": "Java",
+                "shellId": "f3622414-43fe-485b-b19f-fec7dc5be7c0"
+            },
+            "evaluatorReader": true,
+            "lineCount": 13
+        },
+        {
+            "id": "sectionylMdUf",
+            "type": "section",
+            "title": "`getLast()` Gets the element stored at the end of the list",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "coderkSjmN",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "import java.util.LinkedList;",
+                    "",
+                    "LinkedList<String> list = new LinkedList<String>();",
+                    "list.addLast(\"Harry\");",
+                    "list.add(\"Sally\");",
+                    "list.addLast(\"Party\");",
+                    "System.out.println(\"1: \" + list);",
+                    "",
+                    "// Gets the element stored at the end of the list",
+                    "String s = list.getLast();",
+                    "System.out.println(\"2: \" + s);",
+                    "",
+                    "System.out.println(\"3: \" + list);"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Results",
+                "pluginName": "Java",
+                "shellId": "f3622414-43fe-485b-b19f-fec7dc5be7c0"
+            },
+            "evaluatorReader": true,
+            "lineCount": 13
+        },
+        {
+            "id": "sectionCk4iqF",
+            "type": "section",
+            "title": "`removeFirst()` Removes the first element of the list and returns it",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "codeyUZEau",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "import java.util.LinkedList;",
+                    "",
+                    "LinkedList<String> list = new LinkedList<String>();",
+                    "list.addLast(\"Harry\");",
+                    "list.add(\"Sally\");",
+                    "list.addLast(\"Party\");",
+                    "System.out.println(\"1: \" + list);",
+                    "",
+                    "//Removes the first element of the list and returns it",
+                    "String s = list.removeFirst();",
+                    "System.out.println(\"2: \" + s);",
+                    "",
+                    "System.out.println(\"3: \" + list);"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Results",
+                "pluginName": "Java",
+                "shellId": "f3622414-43fe-485b-b19f-fec7dc5be7c0"
+            },
+            "evaluatorReader": true,
+            "lineCount": 13
+        },
+        {
+            "id": "sectionTtrDEF",
+            "type": "section",
+            "title": "`removeLast()` Removes the last element of the list and returns it",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "codeDUdWri",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "import java.util.LinkedList;",
+                    "",
+                    "LinkedList<String> list = new LinkedList<String>();",
+                    "list.addLast(\"Harry\");",
+                    "list.add(\"Sally\");",
+                    "list.addLast(\"Party\");",
+                    "System.out.println(\"1: \" + list);",
+                    "",
+                    "//Removes the last element of the list and returns it",
+                    "String s = list.removeLast();",
+                    "System.out.println(\"2: \" + s);",
+                    "",
+                    "System.out.println(\"3: \" + list);"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Results",
+                "pluginName": "Java",
+                "shellId": "f3622414-43fe-485b-b19f-fec7dc5be7c0"
+            },
+            "evaluatorReader": true,
+            "lineCount": 13
+        },
+        {
+            "id": "sectionGmvLuL",
+            "type": "section",
+            "title": "`ListIterator`",
+            "level": 1,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "markdownxNFxNS",
+            "type": "markdown",
+            "body": [
+                "<img src=\"http://openhome.cc/Gossip/DesignPattern/images/Iterator-1.jpg\">",
+                "",
+                "source: http://openhome.cc/Gossip/DesignPattern/images/Iterator-1.jpg"
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "sectionmTj6TY",
+            "type": "section",
+            "title": "`listIterator()` Provides an iterator for visiting all list elements",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "codeRPa920",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "import java.util.LinkedList;",
+                    "import java.util.ListIterator;",
+                    "",
+                    "LinkedList<String> list = new LinkedList<String>();",
+                    "list.addLast(\"Harry\");",
+                    "list.add(\"Sally\");",
+                    "list.addLast(\"Party\");",
+                    "System.out.println(\"1: \" + list);",
+                    "",
+                    "// Provides an iterator for visiting all list elements",
+                    "ListIterator<String> iter = list.listIterator();",
+                    "System.out.println(\"2: \" + iter);"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Results",
+                "pluginName": "Java",
+                "shellId": "f3622414-43fe-485b-b19f-fec7dc5be7c0"
+            },
+            "evaluatorReader": true,
+            "lineCount": 12
+        },
+        {
+            "id": "sectionveW58T",
+            "type": "section",
+            "title": "`previous()`",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "coderBZCDU",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "import java.util.LinkedList;",
+                    "import java.util.ListIterator;",
+                    "",
+                    "LinkedList<String> list = new LinkedList<String>();",
+                    "list.addLast(\"Harry\");",
+                    "list.add(\"Sally\");",
+                    "list.addLast(\"Party\");",
+                    "System.out.println(\"1: \" + list); // HSP",
+                    "ListIterator<String> iter = list.listIterator(); ",
+                    "// |HSP",
+                    "",
+                    "iter.next(); ",
+                    "// H|SP",
+                    "iter.next(); ",
+                    "// HS|P",
+                    "",
+                    "String s = iter.previous(); // Return \"Sally\" and point to beginning of \"Sally\"",
+                    "// H|SP",
+                    "System.out.println(\"2: \" + s);",
+                    "",
+                    "System.out.println(\"3: \" + iter.next());",
+                    "// HS|P"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Results",
+                "pluginName": "Java",
+                "shellId": "f3622414-43fe-485b-b19f-fec7dc5be7c0"
+            },
+            "evaluatorReader": true,
+            "lineCount": 22
+        },
+        {
+            "id": "sectionnvpjVb",
+            "type": "section",
+            "title": "`set()` Update the last element returned by `next()` or `previous()`",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "codeHqlZOt",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "import java.util.LinkedList;",
+                    "import java.util.ListIterator;",
+                    "",
+                    "LinkedList<String> list = new LinkedList<String>();",
+                    "list.addLast(\"Harry\");",
+                    "list.add(\"Sally\");",
+                    "list.addLast(\"Party\");",
+                    "System.out.println(\"1: \" + list); // HSP",
+                    "ListIterator<String> iter = list.listIterator(); ",
+                    "// |HSP",
+                    "",
+                    "iter.next();  // Returns \"Harry\"",
+                    "//H|SP",
+                    "",
+                    "// Update \"Harry\" to \"Wristly\"",
+                    "iter.set(\"Wristly\");",
+                    "",
+                    "System.out.println(\"2: \" + list);"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Results",
+                "pluginName": "Java",
+                "shellId": "f3622414-43fe-485b-b19f-fec7dc5be7c0"
+            },
+            "evaluatorReader": true,
+            "lineCount": 18
+        },
+        {
+            "id": "sectionf98DZ5",
+            "type": "section",
+            "title": "Working with Sets",
+            "level": 1,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "sectionaahpv1",
+            "type": "section",
+            "title": "Use the interface type `Set` for variable declarations",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "codehcMaYn",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "import java.util.Set;",
+                    "",
+                    "//Use the interface `Set` for variable declarations",
+                    "Set<String> names;"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "BeakerDisplay",
+                "pluginName": "Java",
+                "shellId": "f3622414-43fe-485b-b19f-fec7dc5be7c0"
+            },
+            "evaluatorReader": true,
+            "lineCount": 4
+        },
+        {
+            "id": "sectionEXp6XX",
+            "type": "section",
+            "title": "Use the class `HashSet` or `TreeSet` for instantiation",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "codeya9cff",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "import java.util.Set;",
+                    "import java.util.HashSet;",
+                    "",
+                    "Set<String> names;",
+                    "",
+                    "// Use `HashSet` if you don't need to visit the elements in sorted order",
+                    "names = new HashSet<String>();",
+                    "System.out.println(names);"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Results",
+                "pluginName": "Java",
+                "shellId": "f3622414-43fe-485b-b19f-fec7dc5be7c0"
+            },
+            "evaluatorReader": true,
+            "lineCount": 8
+        },
+        {
+            "id": "code04PNlM",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "import java.util.Set;",
+                    "import java.util.TreeSet;",
+                    "",
+                    "Set<String> names;",
+                    "",
+                    "// Use `TreeSet` if you need to visit the elements in sorted order",
+                    "names = new TreeSet<String>();",
+                    "System.out.println(names);"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Results",
+                "pluginName": "Java",
+                "shellId": "f3622414-43fe-485b-b19f-fec7dc5be7c0"
+            },
+            "evaluatorReader": true,
+            "lineCount": 8
+        },
+        {
+            "id": "sectionfENxM9",
+            "type": "section",
+            "title": "`Set` extends from `Collection`",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "codeHi33nn",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "import java.util.HashSet;",
+                    "import java.util.Iterator;",
+                    "",
+                    "HashSet<String> set = new HashSet<String>();",
+                    "set.add(\"Harry\");",
+                    "set.add(\"Sally\");",
+                    "set.add(\"Party\");",
+                    "System.out.println(\"1: \" + set);",
+                    "",
+                    "System.out.println(\"2: Sally is in set: \" + set.contains(\"Sally\"));",
+                    "System.out.println(\"3: Wristly is in set: \" + set.contains(\"Wristly\"));",
+                    "System.out.println(\"-----------------4----------------\");",
+                    "",
+                    "Iterator<String> iter = set.iterator();",
+                    "while (iter.hasNext()) {",
+                    "  String s = iter.next();",
+                    "  System.out.println(\"s: \" + s);",
+                    "  iter.remove();",
+                    "  System.out.println(\"set: \" + set);",
+                    "}"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Results",
+                "pluginName": "Java",
+                "shellId": "f3622414-43fe-485b-b19f-fec7dc5be7c0"
+            },
+            "evaluatorReader": true,
+            "lineCount": 20
+        },
+        {
+            "id": "code5AAVJ0",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "// Use `TreeSet` if you need to visit elemnts in sorted order",
+                    "",
+                    "import java.util.TreeSet;",
+                    "import java.util.Iterator;",
+                    "",
+                    "TreeSet<String> set = new TreeSet<String>();",
+                    "set.add(\"Harry\");",
+                    "set.add(\"Sally\");",
+                    "set.add(\"Party\");",
+                    "System.out.println(\"1: \" + set);",
+                    "",
+                    "System.out.println(\"2: Sally is in set: \" + set.contains(\"Sally\"));",
+                    "System.out.println(\"3: Wristly is in set: \" + set.contains(\"Wristly\"));",
+                    "System.out.println(\"-----------------4----------------\");",
+                    "",
+                    "Iterator<String> iter = set.iterator();",
+                    "while (iter.hasNext()) {",
+                    "  String s = iter.next();",
+                    "  System.out.println(\"s: \" + s);",
+                    "  iter.remove();",
+                    "  System.out.println(\"set: \" + set);",
+                    "}"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Results",
+                "pluginName": "Java",
+                "shellId": "f3622414-43fe-485b-b19f-fec7dc5be7c0"
+            },
+            "evaluatorReader": true,
+            "lineCount": 22
+        },
+        {
+            "id": "section0oIaS5",
+            "type": "section",
+            "title": "Working with Maps",
+            "level": 1,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "sectionr2F9mE",
+            "type": "section",
+            "title": "interface `Map`",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "codeTHOG1I",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "import java.util.Map;",
+                    "",
+                    "//Use the interface `Map` for variable declarations",
+                    "Map<String, java.awt.Color> favoriteColors;"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Hidden",
+                "pluginName": "Java",
+                "shellId": "f3622414-43fe-485b-b19f-fec7dc5be7c0"
+            },
+            "evaluatorReader": true,
+            "lineCount": 4
+        },
+        {
+            "id": "sectionZ6Nt0A",
+            "type": "section",
+            "title": "class `HashMap` or class `TreeMap`",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "codeKlHElP",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "import java.util.Map;",
+                    "import java.util.HashMap;",
+                    "",
+                    "Map<String, java.awt.Color> favoriteColors;",
+                    "",
+                    "// Use `HashMap` if you don't need to visit the keys in sorted order",
+                    "favoriteColors = new HashMap<String, java.awt.Color>();",
+                    "System.out.println(favoriteColors);"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Results",
+                "pluginName": "Java",
+                "shellId": "f3622414-43fe-485b-b19f-fec7dc5be7c0"
+            },
+            "evaluatorReader": true,
+            "lineCount": 8
+        },
+        {
+            "id": "codexqDFEB",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "import java.util.Map;",
+                    "import java.util.TreeMap;",
+                    "",
+                    "Map<String, java.awt.Color> favoriteColors;",
+                    "",
+                    "// Use `TreeMap` if you need to visit the keys in sorted order",
+                    "favoriteColors = new TreeMap<String, java.awt.Color>();",
+                    "System.out.println(favoriteColors);"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Results",
+                "pluginName": "Java",
+                "shellId": "f3622414-43fe-485b-b19f-fec7dc5be7c0"
+            },
+            "evaluatorReader": true,
+            "lineCount": 8
+        },
+        {
+            "id": "section98BKJ5",
+            "type": "section",
+            "title": "`put()` Adds keys and values to the map",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "codes4jRSf",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "import java.util.HashMap;",
+                    "",
+                    "HashMap<String, java.awt.Color> favoriteColors = new HashMap<String, java.awt.Color>();",
+                    "System.out.println(\"1: \" + favoriteColors);",
+                    "",
+                    "// Adds keys \"Juliet\" and value \"Color.RED\" to the map",
+                    "favoriteColors.put(\"Juliet\", java.awt.Color.RED);",
+                    "System.out.println(\"2: \" + favoriteColors);",
+                    "",
+                    "// Adds keys \"Romio\" and value \"Color.BLUE\" to the map",
+                    "favoriteColors.put(\"Romio\", java.awt.Color.BLUE);",
+                    "System.out.println(\"3: \" + favoriteColors);",
+                    "",
+                    "// Adds keys \"Romio\" and value \"Color.BLUE\" to the map",
+                    "favoriteColors.put(\"Harry\", java.awt.Color.BLACK);",
+                    "System.out.println(\"3: \" + favoriteColors);"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Results",
+                "pluginName": "Java",
+                "shellId": "f3622414-43fe-485b-b19f-fec7dc5be7c0"
+            },
+            "evaluatorReader": true,
+            "lineCount": 16
+        },
+        {
+            "id": "sectionwpdXje",
+            "type": "section",
+            "title": "`put()` Modifies the value of an existing key",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "codeb66aPu",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "import java.util.HashMap;",
+                    "",
+                    "HashMap<String, java.awt.Color> favoriteColors = new HashMap<String, java.awt.Color>();",
+                    "favoriteColors.put(\"Juliet\", java.awt.Color.RED);",
+                    "favoriteColors.put(\"Romio\", java.awt.Color.BLUE);",
+                    "System.out.println(\"1: \" + favoriteColors);",
+                    "",
+                    "// Modifies the value \"Color.GREEN\" of an existing key \"Juliet\"",
+                    "favoriteColors.put(\"Juliet\", java.awt.Color.GREEN);",
+                    "System.out.println(\"2: \" + favoriteColors);"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Results",
+                "pluginName": "Java",
+                "shellId": "f3622414-43fe-485b-b19f-fec7dc5be7c0"
+            },
+            "evaluatorReader": true,
+            "lineCount": 10
+        },
+        {
+            "id": "section3nToUh",
+            "type": "section",
+            "title": "`get()` Gets the value associated with a key, or `null` if the key is not present",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "codehD6jvc",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "import java.util.HashMap;",
+                    "",
+                    "HashMap<String, java.awt.Color> favoriteColors = new HashMap<String, java.awt.Color>();",
+                    "favoriteColors.put(\"Juliet\", java.awt.Color.RED);",
+                    "favoriteColors.put(\"Romio\", java.awt.Color.BLUE);",
+                    "System.out.println(\"1: \" + favoriteColors);",
+                    "",
+                    "// Gets the Color associated with a key \"Romio\"",
+                    "System.out.println(\"2: \" + favoriteColors.get(\"Romio\"));",
+                    "",
+                    "// Gets the Color associated with a key \"Wristly\"",
+                    "System.out.println(\"3: \" + favoriteColors.get(\"Wristly\"));"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Results",
+                "pluginName": "Java",
+                "shellId": "f3622414-43fe-485b-b19f-fec7dc5be7c0"
+            },
+            "evaluatorReader": true,
+            "lineCount": 12
+        },
+        {
+            "id": "sectionTeFMnJ",
+            "type": "section",
+            "title": "`keySet()` Returns the key set of the map",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "codeBBBCnH",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "import java.util.HashMap;",
+                    "",
+                    "HashMap<String, java.awt.Color> favoriteColors = new HashMap<String, java.awt.Color>();",
+                    "favoriteColors.put(\"Juliet\", java.awt.Color.RED);",
+                    "favoriteColors.put(\"Romio\", java.awt.Color.BLUE);",
+                    "System.out.println(\"1: \" + favoriteColors);",
+                    "",
+                    "// Returns the key set of the map",
+                    "System.out.println(\"2: \" + favoriteColors.keySet());",
+                    "",
+                    "// ketSet() is Set",
+                    "System.out.println(\"3: \" + (favoriteColors.keySet() instanceof java.util.Set));",
+                    "System.out.println(\"----------------4---------------\");",
+                    "",
+                    "// Iterates through all map keys and values",
+                    "for (String name : favoriteColors.keySet()) {",
+                    "  java.awt.Color color = favoriteColors.get(name);",
+                    "  System.out.printf(\"%s's favorite color is %s\\n\", name, color);",
+                    "}"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Results",
+                "pluginName": "Java",
+                "shellId": "f3622414-43fe-485b-b19f-fec7dc5be7c0"
+            },
+            "evaluatorReader": true,
+            "lineCount": 19
+        },
+        {
+            "id": "sectionF3z9Oy",
+            "type": "section",
+            "title": "`remove()` Removes the key and value from the map",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "codegjypkw",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "import java.util.HashMap;",
+                    "",
+                    "HashMap<String, java.awt.Color> favoriteColors = new HashMap<String, java.awt.Color>();",
+                    "favoriteColors.put(\"Juliet\", java.awt.Color.RED);",
+                    "favoriteColors.put(\"Romio\", java.awt.Color.BLUE);",
+                    "System.out.println(\"1: \" + favoriteColors);",
+                    "",
+                    "// Removes the key \"Juliet\" and it's value ",
+                    "favoriteColors.remove(\"Juliet\");",
+                    "",
+                    "System.out.println(\"2: \" + favoriteColors);"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Results",
+                "pluginName": "Java",
+                "shellId": "f3622414-43fe-485b-b19f-fec7dc5be7c0"
+            },
+            "evaluatorReader": true,
+            "lineCount": 11
+        }
+    ],
+    "namespace": {}
+}
