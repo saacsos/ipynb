@@ -1,0 +1,395 @@
+{
+    "beaker": "2",
+    "evaluators": [
+        {
+            "name": "HTML",
+            "plugin": "HTML",
+            "view": {
+                "cm": {
+                    "mode": "htmlmixed"
+                }
+            }
+        },
+        {
+            "name": "JavaScript",
+            "plugin": "JavaScript",
+            "view": {
+                "cm": {
+                    "mode": "javascript",
+                    "background": "#FFE0F0"
+                }
+            },
+            "languageVersion": "ES2015"
+        },
+        {
+            "name": "Java",
+            "plugin": "Java",
+            "imports": "com.twosigma.beaker.chart.Color\ncom.twosigma.beaker.chart.GradientColor\ncom.twosigma.beaker.chart.legend.*\ncom.twosigma.beaker.chart.Filter\ncom.twosigma.beaker.BeakerProgressUpdate\ncom.twosigma.beaker.chart.xychart.*\ncom.twosigma.beaker.chart.xychart.plotitem.*\ncom.twosigma.beaker.chart.categoryplot.*\ncom.twosigma.beaker.chart.categoryplot.plotitem.*\ncom.twosigma.beaker.chart.histogram.*\ncom.twosigma.beaker.chart.treemap.*\ncom.twosigma.beaker.chart.treemap.util.*\nnet.sf.jtreemap.swing.*\ncom.twosigma.beaker.NamespaceClient\ncom.twosigma.beaker.chart.heatmap.HeatMap\ncom.twosigma.beaker.jvm.object.*\ncom.twosigma.beaker.easyform.*\ncom.twosigma.beaker.easyform.formitem.*",
+            "view": {
+                "cm": {
+                    "mode": "text/x-java"
+                }
+            }
+        }
+    ],
+    "cells": [
+        {
+            "id": "markdownyIL3Xh",
+            "type": "markdown",
+            "body": [
+                "# Multithreading"
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "sectiona4kEFF",
+            "type": "section",
+            "title": "Running Threads",
+            "level": 1,
+            "evaluatorReader": false,
+            "collapsed": false
+        },
+        {
+            "id": "markdownj8FgDo",
+            "type": "markdown",
+            "body": [
+                "A **thread** is a program unit that is executed _independently_ of other parts of the program."
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "markdownL6gG0m",
+            "type": "markdown",
+            "body": [
+                "## Running a thread is simple in Java -- follow these stpes:"
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "sectionDFXoUH",
+            "type": "section",
+            "title": "Step 0: Runnable interface",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": false
+        },
+        {
+            "id": "markdowncFVLHO",
+            "type": "markdown",
+            "body": [
+                "`java.util.Runnable` interface has method `run()`",
+                "```Java",
+                "public interface Runnable",
+                "{",
+                "  void run();",
+                "}",
+                "```"
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "codeDJph1Z",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "public class Greeting",
+                    "{",
+                    "  private String greeting;",
+                    "  ",
+                    "  public Greeting(String greeting)",
+                    "  {",
+                    "    this.greeting = greeting;",
+                    "  }",
+                    "  ",
+                    "  public String greet()",
+                    "  {",
+                    "    return \"says \" + greeting;",
+                    "  }",
+                    "}"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Text",
+                "pluginName": "Java",
+                "shellId": "ed132fd0-2d9d-4498-9f64-7d4120f5e77d",
+                "height": 36
+            },
+            "evaluatorReader": true,
+            "lineCount": 14
+        },
+        {
+            "id": "section1sLhwh",
+            "type": "section",
+            "title": "Step 1: Write your task into `run()` method",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": false
+        },
+        {
+            "id": "codeiI9DuV",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "public class MyRunnableTask implements Runnable",
+                    "{",
+                    "  private String sentence;",
+                    "  ",
+                    "  public MyRunnableTask(String sentence)",
+                    "  {",
+                    "    this.sentence = sentence;",
+                    "  }",
+                    "  ",
+                    "  @Override",
+                    "  public void run()",
+                    "  {",
+                    "    Greeting greeting = new Greeting(sentence);",
+                    "    System.out.println(greeting.greet());",
+                    "  }",
+                    "}"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Text",
+                "pluginName": "Java",
+                "shellId": "ed132fd0-2d9d-4498-9f64-7d4120f5e77d",
+                "height": 36
+            },
+            "evaluatorReader": true,
+            "lineCount": 16
+        },
+        {
+            "id": "sectionU3pAET",
+            "type": "section",
+            "title": "Step 3: Create an object of your task",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": false
+        },
+        {
+            "id": "markdownan4GZU",
+            "type": "markdown",
+            "body": [
+                "```Java",
+                "Runnable r = new MyRunnableTask(\"Hello Thread\");",
+                "```"
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "sectionMiSFbg",
+            "type": "section",
+            "title": "Step 4: Construct a `Thread` object from the runnable object",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": false
+        },
+        {
+            "id": "markdownumA9qt",
+            "type": "markdown",
+            "body": [
+                "```Java",
+                "Thread t = new Thread(r);",
+                "```"
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "sectionMFneo6",
+            "type": "section",
+            "title": "Step 5: Call the `start()` method to start the thread",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": false
+        },
+        {
+            "id": "markdownFivwG4",
+            "type": "markdown",
+            "body": [
+                "```Java",
+                "t.start();",
+                "```"
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "sectionIyVc78",
+            "type": "section",
+            "title": "Hello Thread",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": false
+        },
+        {
+            "id": "code4VG7pd",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "Runnable r = new MyRunnableTask(\"Hello Thread\");",
+                    "Thread t = new Thread(r);",
+                    "t.start();"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Hidden",
+                "pluginName": "Java",
+                "shellId": "ed132fd0-2d9d-4498-9f64-7d4120f5e77d"
+            },
+            "evaluatorReader": true,
+            "lineCount": 3
+        },
+        {
+            "id": "sectionrnxMJI",
+            "type": "section",
+            "title": "`Thread.sleep(milliseconds)`",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": false
+        },
+        {
+            "id": "markdownIZ6ja7",
+            "type": "markdown",
+            "body": [
+                "The `sleep()` method puts the current thread to sleep for a given number of milliseconds",
+                "",
+                "* A thread might sleep for so long that it is no longer useful and should be ternimated.",
+                "* When a sleeping thread is interrupted, an `InterruptedException` is generated.",
+                "* You need to catch that exception in your `run()` method and terminate the thread.",
+                "",
+                "```Java",
+                "public void run()",
+                "{",
+                "  try",
+                "  {",
+                "    // Task statements",
+                "    Thread.sleep(1000); // sleep for 1 second",
+                "  } catch(InterruptedException exception) {",
+                "    // ...",
+                "  }",
+                "  // Clean up, if neccesary.",
+                "}",
+                "```"
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "codeHJW4CV",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "public class MyGreetingTask implements Runnable",
+                    "{",
+                    "  private String sentence;",
+                    "  private final int REPETITIONS = 10;",
+                    "  private final int DELAY = 1000;",
+                    "  ",
+                    "  public MyGreetingTask(String sentence)",
+                    "  {",
+                    "    this.sentence = sentence;",
+                    "  }",
+                    "  ",
+                    "  @Override",
+                    "  public void run()",
+                    "  {",
+                    "    Greeting greeting = new Greeting(sentence);",
+                    "    try {",
+                    "      for (int i = 1; i <= REPETITIONS; i++) {",
+                    "        System.out.println(i + \" : \" + greeting.greet());",
+                    "        Thread.sleep(DELAY);",
+                    "      }",
+                    "    } catch (InterruptedException exception) {",
+                    "      System.err.println(\"Thread was interrupted\");",
+                    "    }",
+                    "  }",
+                    "}"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Text",
+                "pluginName": "Java",
+                "shellId": "ed132fd0-2d9d-4498-9f64-7d4120f5e77d",
+                "height": 36
+            },
+            "evaluatorReader": true,
+            "lineCount": 25
+        },
+        {
+            "id": "codeprYyUI",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "Runnable r = new MyGreetingTask(\"Hello Repetition Thread\");",
+                    "Thread t = new Thread(r);",
+                    "t.start();"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Hidden",
+                "pluginName": "Java",
+                "shellId": "ed132fd0-2d9d-4498-9f64-7d4120f5e77d"
+            },
+            "evaluatorReader": true,
+            "lineCount": 3
+        },
+        {
+            "id": "sectionVVMn0Y",
+            "type": "section",
+            "title": "Multithreading",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": false
+        },
+        {
+            "id": "codeefWPnw",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "Thread[] threads = new Thread[3];",
+                    "threads[0] = new Thread(new MyGreetingTask(\"Multithread 001\"));",
+                    "threads[1] = new Thread(new MyGreetingTask(\"Multithread 002\"));",
+                    "threads[2] = new Thread(new MyGreetingTask(\"Multithread 003\"));",
+                    "for (Thread t : threads) {",
+                    "  t.start();",
+                    "}"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Hidden",
+                "pluginName": "Java",
+                "shellId": "ed132fd0-2d9d-4498-9f64-7d4120f5e77d"
+            },
+            "evaluatorReader": true,
+            "lineCount": 7
+        },
+        {
+            "id": "codejNAVcb",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    ""
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Hidden",
+                "pluginName": "Java",
+                "shellId": "68e61885-3eb5-4cc7-9d72-c4cc3a9161b3"
+            },
+            "evaluatorReader": true,
+            "lineCount": 1
+        }
+    ],
+    "namespace": {}
+}
