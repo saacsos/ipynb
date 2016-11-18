@@ -47,7 +47,7 @@
             "title": "Running Threads",
             "level": 1,
             "evaluatorReader": false,
-            "collapsed": false
+            "collapsed": true
         },
         {
             "id": "markdownj8FgDo",
@@ -71,7 +71,7 @@
             "title": "Step 0: Runnable interface",
             "level": 2,
             "evaluatorReader": false,
-            "collapsed": false
+            "collapsed": true
         },
         {
             "id": "markdowncFVLHO",
@@ -93,18 +93,18 @@
             "evaluator": "Java",
             "input": {
                 "body": [
-                    "public class Greeting",
+                    "public class BankAccount",
                     "{",
-                    "  private String greeting;",
+                    "  private double amount = 0.00;",
                     "  ",
-                    "  public Greeting(String greeting)",
+                    "  public void deposit(double money)",
                     "  {",
-                    "    this.greeting = greeting;",
+                    "    amount += money;",
                     "  }",
                     "  ",
-                    "  public String greet()",
+                    "  public double getAmount() ",
                     "  {",
-                    "    return \"says \" + greeting;",
+                    "    return amount;",
                     "  }",
                     "}"
                 ]
@@ -113,7 +113,7 @@
                 "state": {},
                 "selectedType": "Text",
                 "pluginName": "Java",
-                "shellId": "ed132fd0-2d9d-4498-9f64-7d4120f5e77d",
+                "shellId": "25b074cf-4c88-4929-bae0-cda09287715d",
                 "height": 36
             },
             "evaluatorReader": true,
@@ -125,7 +125,7 @@
             "title": "Step 1: Write your task into `run()` method",
             "level": 2,
             "evaluatorReader": false,
-            "collapsed": false
+            "collapsed": true
         },
         {
             "id": "codeiI9DuV",
@@ -135,18 +135,19 @@
                 "body": [
                     "public class MyRunnableTask implements Runnable",
                     "{",
-                    "  private String sentence;",
+                    "  private double money;",
+                    "  private BankAccount account;",
                     "  ",
-                    "  public MyRunnableTask(String sentence)",
+                    "  public MyRunnableTask(BankAccount account, double money)",
                     "  {",
-                    "    this.sentence = sentence;",
+                    "    this.account = account;",
+                    "    this.money = money;",
                     "  }",
                     "  ",
                     "  @Override",
                     "  public void run()",
                     "  {",
-                    "    Greeting greeting = new Greeting(sentence);",
-                    "    System.out.println(greeting.greet());",
+                    "    account.deposit(money);",
                     "  }",
                     "}"
                 ]
@@ -155,11 +156,11 @@
                 "state": {},
                 "selectedType": "Text",
                 "pluginName": "Java",
-                "shellId": "ed132fd0-2d9d-4498-9f64-7d4120f5e77d",
+                "shellId": "25b074cf-4c88-4929-bae0-cda09287715d",
                 "height": 36
             },
             "evaluatorReader": true,
-            "lineCount": 16
+            "lineCount": 17
         },
         {
             "id": "sectionU3pAET",
@@ -167,7 +168,7 @@
             "title": "Step 3: Create an object of your task",
             "level": 2,
             "evaluatorReader": false,
-            "collapsed": false
+            "collapsed": true
         },
         {
             "id": "markdownan4GZU",
@@ -185,7 +186,7 @@
             "title": "Step 4: Construct a `Thread` object from the runnable object",
             "level": 2,
             "evaluatorReader": false,
-            "collapsed": false
+            "collapsed": true
         },
         {
             "id": "markdownumA9qt",
@@ -203,7 +204,7 @@
             "title": "Step 5: Call the `start()` method to start the thread",
             "level": 2,
             "evaluatorReader": false,
-            "collapsed": false
+            "collapsed": true
         },
         {
             "id": "markdownFivwG4",
@@ -221,7 +222,7 @@
             "title": "Hello Thread",
             "level": 2,
             "evaluatorReader": false,
-            "collapsed": false
+            "collapsed": true
         },
         {
             "id": "code4VG7pd",
@@ -229,19 +230,29 @@
             "evaluator": "Java",
             "input": {
                 "body": [
-                    "Runnable r = new MyRunnableTask(\"Hello Thread\");",
+                    "BankAccount myAccount = new BankAccount();",
+                    "Runnable r = new MyRunnableTask(myAccount, 1);",
                     "Thread t = new Thread(r);",
-                    "t.start();"
+                    "t.start();",
+                    "",
+                    "// wait until thread is finish",
+                    "while (true) {",
+                    "  if (!t.isAlive()) {",
+                    "    break;",
+                    "  }",
+                    "  java.util.concurrent.TimeUnit.SECONDS.sleep(1);",
+                    "}",
+                    "System.out.println(myAccount.getAmount());"
                 ]
             },
             "output": {
                 "state": {},
-                "selectedType": "Hidden",
+                "selectedType": "Results",
                 "pluginName": "Java",
-                "shellId": "ed132fd0-2d9d-4498-9f64-7d4120f5e77d"
+                "shellId": "25b074cf-4c88-4929-bae0-cda09287715d"
             },
             "evaluatorReader": true,
-            "lineCount": 3
+            "lineCount": 13
         },
         {
             "id": "sectionrnxMJI",
@@ -249,7 +260,7 @@
             "title": "`Thread.sleep(milliseconds)`",
             "level": 2,
             "evaluatorReader": false,
-            "collapsed": false
+            "collapsed": true
         },
         {
             "id": "markdownIZ6ja7",
@@ -283,25 +294,26 @@
             "evaluator": "Java",
             "input": {
                 "body": [
-                    "public class MyGreetingTask implements Runnable",
+                    "public class BankAccountRunnableTask implements Runnable",
                     "{",
-                    "  private String sentence;",
                     "  private final int REPETITIONS = 10;",
                     "  private final int DELAY = 1000;",
+                    "  private double money;",
+                    "  private BankAccount account;",
                     "  ",
-                    "  public MyGreetingTask(String sentence)",
+                    "  public BankAccountRunnableTask(BankAccount account, double money)",
                     "  {",
-                    "    this.sentence = sentence;",
+                    "    this.account = account;",
+                    "    this.money = money;",
                     "  }",
                     "  ",
                     "  @Override",
                     "  public void run()",
                     "  {",
-                    "    Greeting greeting = new Greeting(sentence);",
                     "    try {",
                     "      for (int i = 1; i <= REPETITIONS; i++) {",
-                    "        System.out.println(i + \" : \" + greeting.greet());",
-                    "        Thread.sleep(DELAY);",
+                    "        account.deposit(money);",
+                    "        Thread.sleep(DELAY); // sleep thread for 1 second",
                     "      }",
                     "    } catch (InterruptedException exception) {",
                     "      System.err.println(\"Thread was interrupted\");",
@@ -314,11 +326,11 @@
                 "state": {},
                 "selectedType": "Text",
                 "pluginName": "Java",
-                "shellId": "ed132fd0-2d9d-4498-9f64-7d4120f5e77d",
+                "shellId": "25b074cf-4c88-4929-bae0-cda09287715d",
                 "height": 36
             },
             "evaluatorReader": true,
-            "lineCount": 25
+            "lineCount": 26
         },
         {
             "id": "codeprYyUI",
@@ -326,19 +338,29 @@
             "evaluator": "Java",
             "input": {
                 "body": [
-                    "Runnable r = new MyGreetingTask(\"Hello Repetition Thread\");",
+                    "BankAccount myAccount = new BankAccount();",
+                    "Runnable r = new BankAccountRunnableTask(myAccount, 1);",
                     "Thread t = new Thread(r);",
-                    "t.start();"
+                    "t.start();",
+                    "",
+                    "while (true) {",
+                    "  if (!t.isAlive()) {",
+                    "    break;",
+                    "  }",
+                    "  System.out.println(\"(DEBUG) amount: \" + myAccount.getAmount());",
+                    "  java.util.concurrent.TimeUnit.SECONDS.sleep(1);",
+                    "}",
+                    "System.out.println(myAccount.getAmount());"
                 ]
             },
             "output": {
                 "state": {},
-                "selectedType": "Hidden",
+                "selectedType": "Results",
                 "pluginName": "Java",
-                "shellId": "ed132fd0-2d9d-4498-9f64-7d4120f5e77d"
+                "shellId": "25b074cf-4c88-4929-bae0-cda09287715d"
             },
             "evaluatorReader": true,
-            "lineCount": 3
+            "lineCount": 13
         },
         {
             "id": "sectionVVMn0Y",
@@ -349,46 +371,393 @@
             "collapsed": false
         },
         {
+            "id": "sectionmWdjZE",
+            "type": "section",
+            "title": "Multithreading on each account",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": false
+        },
+        {
             "id": "codeefWPnw",
             "type": "code",
             "evaluator": "Java",
             "input": {
                 "body": [
+                    "BankAccount[] accounts = new BankAccount[3];",
                     "Thread[] threads = new Thread[3];",
-                    "threads[0] = new Thread(new MyGreetingTask(\"Multithread 001\"));",
-                    "threads[1] = new Thread(new MyGreetingTask(\"Multithread 002\"));",
-                    "threads[2] = new Thread(new MyGreetingTask(\"Multithread 003\"));",
+                    "",
+                    "for (int i=0; i<threads.length; i++) {",
+                    "  accounts[i] = new BankAccount();",
+                    "  threads[i] = new Thread(new BankAccountRunnableTask(accounts[i], Math.pow(10, (2 * i))));",
+                    "}",
+                    "",
                     "for (Thread t : threads) {",
-                    "  t.start();",
+                    "  t.start();  ",
+                    "}",
+                    "",
+                    "// check whether all threads are finish ====================================================",
+                    "int[] finishThreads = new int[]{0, 0, 0};",
+                    "while (true) {",
+                    "  for (int i=0; i<threads.length; i++) {",
+                    "    if ((finishThreads[i] == 0) && !threads[i].isAlive()) {",
+                    "      finishThreads[i] = 1;",
+                    "    }",
+                    "    System.out.println(\"(DEBUG) amount in account \" + i + \" : \" + accounts[i].getAmount());",
+                    "  }",
+                    "  java.util.concurrent.TimeUnit.SECONDS.sleep(1);",
+                    "  int sum = java.util.stream.IntStream.of(finishThreads).sum();",
+                    "  if (sum == threads.length) break;",
+                    "}",
+                    "",
+                    "for (int i=0; i<accounts.length; i++)",
+                    "  System.out.println(\"Amount in account \" + i + \" : \" + accounts[i].getAmount());"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Results",
+                "pluginName": "Java",
+                "shellId": "25b074cf-4c88-4929-bae0-cda09287715d"
+            },
+            "evaluatorReader": true,
+            "lineCount": 28
+        },
+        {
+            "id": "sectionQtKhZQ",
+            "type": "section",
+            "title": "Multithreading on same account",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "codeT90o7X",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "BankAccount myAccount = new BankAccount();",
+                    "",
+                    "Thread[] threads = new Thread[3];",
+                    "threads[0] = new Thread(new BankAccountRunnableTask(myAccount, 1));",
+                    "threads[1] = new Thread(new BankAccountRunnableTask(myAccount, 100));",
+                    "threads[2] = new Thread(new BankAccountRunnableTask(myAccount, 10000));",
+                    "for (Thread t : threads) {",
+                    "  t.start();  ",
+                    "}",
+                    "",
+                    "// check whether all threads are finish ====================================================",
+                    "int[] finishThreads = new int[]{0, 0, 0};",
+                    "while (true) {",
+                    "  for (int i=0; i<threads.length; i++) {",
+                    "    if ((finishThreads[i] == 0) && !threads[i].isAlive()) {",
+                    "      finishThreads[i] = 1;",
+                    "    }",
+                    "    System.out.println(\"(DEBUG) amount on thread \" + i + \" : \" + myAccount.getAmount());",
+                    "  }",
+                    "  java.util.concurrent.TimeUnit.SECONDS.sleep(1);",
+                    "  int sum = java.util.stream.IntStream.of(finishThreads).sum();",
+                    "  if (sum == threads.length) break;",
+                    "}",
+                    "",
+                    "System.out.println(myAccount.getAmount());"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Results",
+                "pluginName": "Java",
+                "shellId": "25b074cf-4c88-4929-bae0-cda09287715d"
+            },
+            "evaluatorReader": true,
+            "lineCount": 25
+        },
+        {
+            "id": "sectionkVNlr0",
+            "type": "section",
+            "title": "Thread Pools with `ExecutorService`",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "markdown5Tlndp",
+            "type": "markdown",
+            "body": [
+                "* Threads are managed by the operating system, and there is a cost for creating threads.",
+                "* Each thread requires memory, and thread creation takes time.",
+                "* This cost can be reduced by using a thread pool."
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "codeE9Zlff",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "import java.util.concurrent.ExecutorService;",
+                    "import java.util.concurrent.Executors;",
+                    "import java.util.concurrent.TimeUnit;",
+                    "",
+                    "BankAccount myAccount = new BankAccount(); // try debugging amount in eclipse",
+                    "",
+                    "int MAX_THREADS = 2; // กำหนดจำนวนสูงสุดของ threads ใน pool (หมายความว่าจะ run พร้อมกัน รอบละ 2 threads)",
+                    "// กำหนด thread pool",
+                    "ExecutorService pool = Executors.newFixedThreadPool(MAX_THREADS);",
+                    "",
+                    "Runnable[] r = new Runnable[4];",
+                    "",
+                    "for (int i=0; i<r.length; i++) {",
+                    "  r[i] = new BankAccountRunnableTask(myAccount, Math.pow(10, 2*i));",
+                    "  pool.execute(r[i]);",
+                    "}",
+                    "",
+                    "pool.shutdown(); ",
+                    "",
+                    "System.out.println(myAccount.getAmount());",
+                    "try {",
+                    "  if(pool.awaitTermination(1, TimeUnit.MINUTES)) {",
+                    "    System.out.println(myAccount.getAmount());",
+                    "  }",
+                    "} catch (InterruptedException e) {",
+                    "  e.printStackTrace();",
                     "}"
                 ]
             },
             "output": {
                 "state": {},
-                "selectedType": "Hidden",
+                "selectedType": "Results",
                 "pluginName": "Java",
-                "shellId": "ed132fd0-2d9d-4498-9f64-7d4120f5e77d"
+                "shellId": "25b074cf-4c88-4929-bae0-cda09287715d"
             },
             "evaluatorReader": true,
-            "lineCount": 7
+            "lineCount": 27
         },
         {
-            "id": "codejNAVcb",
+            "id": "sectionBRvf2t",
+            "type": "section",
+            "title": "Terminating Threads",
+            "level": 1,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "markdown6pHZ4J",
+            "type": "markdown",
+            "body": [
+                "## 1. The normal way of terminating a thread",
+                "* When the `run()` method of a thread has finished executing.",
+                "",
+                "## 2. `interrupt()` method",
+                "* You may have several threads trying to find a solution to a problem.",
+                "* As soon as the first one has succeeded, you may want to terminate the other ones.",
+                "* To notify a thread that it should clean up and terminate, you use the `interrupt()` method.",
+                "",
+                ""
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "sectionqurvqr",
+            "type": "section",
+            "title": "`GuessNumber`",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": false
+        },
+        {
+            "id": "codeeHccNM",
             "type": "code",
             "evaluator": "Java",
             "input": {
                 "body": [
-                    ""
+                    "public class GuessNumber {",
+                    "  private int target;",
+                    "  ",
+                    "  public GuessNumber(int target) {",
+                    "    this.target = target;",
+                    "  }",
+                    "  ",
+                    "  public boolean guess(int number) {",
+                    "      return target == number;",
+                    "  }",
+                    "}"
                 ]
             },
             "output": {
                 "state": {},
-                "selectedType": "Hidden",
+                "selectedType": "Text",
                 "pluginName": "Java",
-                "shellId": "68e61885-3eb5-4cc7-9d72-c4cc3a9161b3"
+                "shellId": "25b074cf-4c88-4929-bae0-cda09287715d"
             },
             "evaluatorReader": true,
-            "lineCount": 1
+            "lineCount": 11
+        },
+        {
+            "id": "section3mwfuv",
+            "type": "section",
+            "title": "`GuessNumberListener`",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": false
+        },
+        {
+            "id": "codeIXee7X",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "public class GuessNumberListener {",
+                    "  private boolean stopThreads = false;",
+                    "  ",
+                    "  public void setStopSignal() {",
+                    "    stopThreads = true;",
+                    "  }",
+                    "  ",
+                    "  public boolean getStopThread() {",
+                    "    return stopThreads;",
+                    "  }",
+                    "}"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Text",
+                "pluginName": "Java",
+                "shellId": "25b074cf-4c88-4929-bae0-cda09287715d"
+            },
+            "evaluatorReader": true,
+            "lineCount": 11
+        },
+        {
+            "id": "section75V3de",
+            "type": "section",
+            "title": "`GuessRunnableTask`",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": false
+        },
+        {
+            "id": "codeXPy19u",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "public class GuessRunnableTask implements Runnable {",
+                    "  private GuessNumber guessNumber;",
+                    "  private GuessNumberListener listener;",
+                    "  private int start;",
+                    "  private int end;",
+                    "  private int countGuess;",
+                    "  private boolean found;",
+                    "  ",
+                    "  public GuessRunnableTask(GuessNumber guessNumber, int start, int end, GuessNumberListener listener) {",
+                    "    this.guessNumber = guessNumber;",
+                    "    this.start = start;",
+                    "    this.end = end;",
+                    "    this.listener = listener;",
+                    "  }",
+                    "  ",
+                    "  @Override",
+                    "  public void run() {",
+                    "    try {",
+                    "      for (int i=start; i<=end; i++) {",
+                    "        countGuess++;",
+                    "        if (guessNumber.guess(i)) {",
+                    "          found = true;",
+                    "          listener.setStopSignal();",
+                    "          break;",
+                    "        }",
+                    "         Thread.sleep(200);",
+                    "      }",
+                    "    } catch (InterruptedException exception) {",
+                    "      ",
+                    "    }",
+                    "  }",
+                    "  ",
+                    "  public boolean getFound() {",
+                    "    return found;",
+                    "  }",
+                    "  ",
+                    "  public int getCountGuess() {",
+                    "    return countGuess;",
+                    "  }",
+                    "}"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Text",
+                "pluginName": "Java",
+                "shellId": "25b074cf-4c88-4929-bae0-cda09287715d"
+            },
+            "evaluatorReader": true,
+            "lineCount": 40
+        },
+        {
+            "id": "sectionEeOYBb",
+            "type": "section",
+            "title": "Guess Number with Multithreading",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": false
+        },
+        {
+            "id": "coderD8c1O",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "GuessNumber puzzle = new GuessNumber(56);",
+                    "GuessNumberListener stopThreadsListener = new GuessNumberListener();",
+                    "",
+                    "GuessRunnableTask[] r = new GuessRunnableTask[4];",
+                    "Thread[] threads = new Thread[4];",
+                    "",
+                    "for (int i=0; i<threads.length; i++) {",
+                    "  r[i] = new GuessRunnableTask(puzzle, 50 * i + 1, 50 * (i + 1), stopThreadsListener);",
+                    "  threads[i] = new Thread(r[i]);",
+                    "}",
+                    "",
+                    "for (Thread t : threads) {",
+                    "  t.start();  ",
+                    "}",
+                    "",
+                    "// check whether all threads are finish ====================================================",
+                    "int[] finishThreads = new int[]{0, 0, 0, 0};",
+                    "while (true) {",
+                    "  if (stopThreadsListener.getStopThread()) {",
+                    "    for (Thread t : threads) {",
+                    "      // To notify a thread that it should clean up and terminate, you use the interrupt() method.",
+                    "      t.interrupt();  ",
+                    "    }",
+                    "  }",
+                    "  ",
+                    "  for (int i=0; i<threads.length; i++) {",
+                    "    if ((finishThreads[i] == 0) && !threads[i].isAlive()) {",
+                    "      finishThreads[i] = 1;",
+                    "    }",
+                    "    ",
+                    "  }",
+                    "  java.util.concurrent.TimeUnit.SECONDS.sleep(1);",
+                    "  int sum = java.util.stream.IntStream.of(finishThreads).sum();",
+                    "  if (sum == threads.length) break;",
+                    "}",
+                    "",
+                    "for (int i=0; i<r.length; i++)",
+                    "  System.out.println(\"Task \" + i + \" {found:\" + r[i].getFound() + \", count:\" + r[i].getCountGuess() + \"}\");"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Results",
+                "pluginName": "Java",
+                "shellId": "25b074cf-4c88-4929-bae0-cda09287715d"
+            },
+            "evaluatorReader": true,
+            "lineCount": 38
         }
     ],
     "namespace": {}
