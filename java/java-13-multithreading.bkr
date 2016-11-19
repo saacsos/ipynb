@@ -368,7 +368,7 @@
             "title": "Multithreading",
             "level": 2,
             "evaluatorReader": false,
-            "collapsed": false
+            "collapsed": true
         },
         {
             "id": "sectionmWdjZE",
@@ -376,7 +376,7 @@
             "title": "Multithreading on each account",
             "level": 3,
             "evaluatorReader": false,
-            "collapsed": false
+            "collapsed": true
         },
         {
             "id": "codeefWPnw",
@@ -565,7 +565,7 @@
             "title": "`GuessNumber`",
             "level": 2,
             "evaluatorReader": false,
-            "collapsed": false
+            "collapsed": true
         },
         {
             "id": "codeeHccNM",
@@ -590,7 +590,7 @@
                 "state": {},
                 "selectedType": "Text",
                 "pluginName": "Java",
-                "shellId": "25b074cf-4c88-4929-bae0-cda09287715d"
+                "shellId": "bee5f161-4d00-4248-9de2-8e2d371fbf96"
             },
             "evaluatorReader": true,
             "lineCount": 11
@@ -601,7 +601,7 @@
             "title": "`GuessNumberListener`",
             "level": 2,
             "evaluatorReader": false,
-            "collapsed": false
+            "collapsed": true
         },
         {
             "id": "codeIXee7X",
@@ -637,7 +637,7 @@
             "title": "`GuessRunnableTask`",
             "level": 2,
             "evaluatorReader": false,
-            "collapsed": false
+            "collapsed": true
         },
         {
             "id": "codeXPy19u",
@@ -702,7 +702,7 @@
             "title": "Guess Number with Multithreading",
             "level": 2,
             "evaluatorReader": false,
-            "collapsed": false
+            "collapsed": true
         },
         {
             "id": "coderD8c1O",
@@ -710,7 +710,7 @@
             "evaluator": "Java",
             "input": {
                 "body": [
-                    "GuessNumber puzzle = new GuessNumber(56);",
+                    "  GuessNumber puzzle = new GuessNumber(56);",
                     "GuessNumberListener stopThreadsListener = new GuessNumberListener();",
                     "",
                     "GuessRunnableTask[] r = new GuessRunnableTask[4];",
@@ -741,9 +741,10 @@
                     "    }",
                     "    ",
                     "  }",
-                    "  java.util.concurrent.TimeUnit.SECONDS.sleep(1);",
+                    "  ",
                     "  int sum = java.util.stream.IntStream.of(finishThreads).sum();",
                     "  if (sum == threads.length) break;",
+                    "  java.util.concurrent.TimeUnit.SECONDS.sleep(1);",
                     "}",
                     "",
                     "for (int i=0; i<r.length; i++)",
@@ -757,7 +758,597 @@
                 "shellId": "25b074cf-4c88-4929-bae0-cda09287715d"
             },
             "evaluatorReader": true,
-            "lineCount": 38
+            "lineCount": 39
+        },
+        {
+            "id": "sectionl6Knpc",
+            "type": "section",
+            "title": "Race Conditions",
+            "level": 1,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "markdownfHqVDI",
+            "type": "markdown",
+            "body": [
+                "When threads share access to a common object, they can conflict with each other."
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "sectionFIYrel",
+            "type": "section",
+            "title": "`BankAccount`",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "codejfqR8G",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "public class BankAccount {",
+                    "    private double balance = 0;",
+                    "",
+                    "    public void deposit(double amount) {",
+                    "        balance += amount;",
+                    "    }",
+                    "",
+                    "    public void withdraw(double amount) {",
+                    "        balance -= amount;",
+                    "    }",
+                    "",
+                    "    public double getBalance() {",
+                    "        return balance;",
+                    "    }",
+                    "}"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Text",
+                "pluginName": "Java",
+                "shellId": "bee5f161-4d00-4248-9de2-8e2d371fbf96",
+                "height": 35
+            },
+            "evaluatorReader": true,
+            "lineCount": 15
+        },
+        {
+            "id": "sectionVbfg6l",
+            "type": "section",
+            "title": "`DepositRunnableTask`",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "codewU2l3O",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "public class DepositRunnableTask implements Runnable {",
+                    "    private BankAccount account;",
+                    "    private double amount;",
+                    "    private int repetitions;",
+                    "    private boolean finish = false;",
+                    "",
+                    "    public DepositRunnableTask(BankAccount account, double amount, int repetitions) {",
+                    "        this.account = account;",
+                    "        this.amount = amount;",
+                    "        this.repetitions = repetitions;",
+                    "    }",
+                    "",
+                    "    @Override",
+                    "    public void run() {",
+                    "        for (int i = 0; i < repetitions; i++) {",
+                    "            account.deposit(amount);",
+                    "        }",
+                    "        finish = true;",
+                    "    }",
+                    "",
+                    "    public boolean isFinish() {",
+                    "        return finish;",
+                    "    }",
+                    "}"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Text",
+                "pluginName": "Java",
+                "shellId": "bee5f161-4d00-4248-9de2-8e2d371fbf96"
+            },
+            "evaluatorReader": true,
+            "lineCount": 24
+        },
+        {
+            "id": "sectionPlglBm",
+            "type": "section",
+            "title": "`WithdrawRunnableTask`",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "codef4C7qw",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "public class WithdrawRunnableTask implements Runnable {",
+                    "    private BankAccount account;",
+                    "    private double amount;",
+                    "    private int repetitions;",
+                    "    private boolean finish = false;",
+                    "",
+                    "    public WithdrawRunnableTask(BankAccount account, double amount, int repetitions) {",
+                    "        this.account = account;",
+                    "        this.amount = amount;",
+                    "        this.repetitions = repetitions;",
+                    "    }",
+                    "",
+                    "    @Override",
+                    "    public void run() {",
+                    "        for (int i = 0; i < repetitions; i++) {",
+                    "            account.withdraw(amount);",
+                    "        }",
+                    "        finish = true;",
+                    "    }",
+                    "",
+                    "    public boolean isFinish() {",
+                    "        return finish;",
+                    "    }",
+                    "}"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Text",
+                "pluginName": "Java",
+                "shellId": "bee5f161-4d00-4248-9de2-8e2d371fbf96"
+            },
+            "evaluatorReader": true,
+            "lineCount": 24
+        },
+        {
+            "id": "sectionvBdF3h",
+            "type": "section",
+            "title": "BankAccount Race Conditions",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "markdownEtjrUR",
+            "type": "markdown",
+            "body": [
+                "Balance should be 0"
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "codeQJE5MP",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "BankAccount account = new BankAccount();",
+                    "final double AMOUNT = 100;",
+                    "final int REPETITIONS = 100;",
+                    "final int THREADS = 100;",
+                    "",
+                    "DepositRunnableTask[] ds = new DepositRunnableTask[THREADS];",
+                    "WithdrawRunnableTask[] ws = new WithdrawRunnableTask[THREADS];",
+                    "",
+                    "for (int i = 0; i < THREADS; i++) {",
+                    "  ds[i] = new DepositRunnableTask(account, AMOUNT, REPETITIONS);",
+                    "  ws[i] = new WithdrawRunnableTask(account, AMOUNT, REPETITIONS);",
+                    "  (new Thread(ds[i])).start();",
+                    "  (new Thread(ws[i])).start();",
+                    "}",
+                    "",
+                    "int[] finishDs = new int[THREADS];",
+                    "int[] finishWs = new int[THREADS];",
+                    "",
+                    "while (true) {",
+                    "  for (int i = 0; i<THREADS; i++) {",
+                    "    if (ds[i].isFinish()) finishDs[i] = 1;",
+                    "    if (ws[i].isFinish()) finishWs[i] = 1;",
+                    "  }",
+                    "  int sum = java.util.stream.IntStream.of(finishDs).sum();",
+                    "  sum += java.util.stream.IntStream.of(finishWs).sum();",
+                    "  if (sum == 2 * THREADS) ",
+                    "    break;",
+                    "}",
+                    "System.out.println(account.getBalance());"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Results",
+                "pluginName": "Java",
+                "shellId": "bee5f161-4d00-4248-9de2-8e2d371fbf96"
+            },
+            "evaluatorReader": true,
+            "lineCount": 29
+        },
+        {
+            "id": "sectionSeJbet",
+            "type": "section",
+            "title": "Synchronizing Object Access",
+            "level": 1,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "section12nvYb",
+            "type": "section",
+            "title": "Lock object",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "markdownyOeCxZ",
+            "type": "markdown",
+            "body": [
+                "* The lock object is used to control the threads that want to manipulate a shared resource.",
+                "* The Java library defines a `Lock` interface and several classes that implement this interface.",
+                "* The `ReentranLock` class is the most commonly used lock class.",
+                "",
+                "```Java",
+                "pulbic class BankAccount",
+                "{",
+                "  private Lock balanceChangeLock;",
+                "  . . .",
+                "  public BankAccount()",
+                "  {",
+                "    balanceChangeLock = new ReentrantLock();",
+                "    . . .",
+                "  }",
+                "}",
+                "```"
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "markdowndVGMqj",
+            "type": "markdown",
+            "body": [
+                "* All code that manipulates the shared resource is surrounded by calls to lock and unlock the lock object",
+                "",
+                "```Java",
+                "    balanceChangeLock.lock();",
+                "    // Manipulate the shared resource.",
+                "    balanceChangeLock.unlock();",
+                "```"
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "markdownkfA2cA",
+            "type": "markdown",
+            "body": [
+                "* However, this sequence of statements has a potential flaw.",
+                "* If the code between the calls to `lock()` and `unlock()` throws an exception, the call to `unlock()` never happens.",
+                "* To overcome this problem, place the call to `unlock()` into a `finally` clause.",
+                "",
+                "```Java",
+                "    balanceChangeLock.lock();",
+                "    try {",
+                "        // Manipulate the shared resource.",
+                "    } finally {",
+                "        balanceChangeLock.unlock();",
+                "    }",
+                "```"
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "markdownIGLDdl",
+            "type": "markdown",
+            "body": [
+                "* When a thread calls the `lock()` method, it _owns the lock_ until its calls the `unlock()` method.",
+                "* If a thread calls `lock()` while another thread owns the lock, the first thread is temporarily deactivated.",
+                "* Eventually, when the lock is available because the original thread unlocked it, the waiting thread can acquire the lock."
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "section2K5BBR",
+            "type": "section",
+            "title": "`BankAccount` using `Lock`",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "codeHK8pR7",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "import java.util.concurrent.locks.Lock;",
+                    "import java.util.concurrent.locks.ReentrantLock;",
+                    "",
+                    "public class BankAccount {",
+                    "    private double balance = 0;",
+                    "    private Lock balanceChangeLock = new ReentrantLock();",
+                    "",
+                    "    public void deposit(double amount) {",
+                    "        balanceChangeLock.lock();",
+                    "        try {",
+                    "            balance += amount;",
+                    "        } finally {",
+                    "            balanceChangeLock.unlock();",
+                    "        }",
+                    "    }",
+                    "",
+                    "    public void withdraw(double amount) {",
+                    "        balanceChangeLock.lock();",
+                    "        try {",
+                    "            balance -= amount;",
+                    "        } finally {",
+                    "            balanceChangeLock.unlock();",
+                    "        }",
+                    "    }",
+                    "",
+                    "    public double getBalance() {",
+                    "        return balance;",
+                    "    }",
+                    "",
+                    "}"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Text",
+                "pluginName": "Java",
+                "shellId": "bee5f161-4d00-4248-9de2-8e2d371fbf96"
+            },
+            "evaluatorReader": true,
+            "lineCount": 30
+        },
+        {
+            "id": "sectionIsfYxi",
+            "type": "section",
+            "title": "BankAccount Race Conditions with Lock",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "codeKGVi2a",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "BankAccount account = new BankAccount();",
+                    "final double AMOUNT = 100;",
+                    "final int REPETITIONS = 100;",
+                    "final int THREADS = 100;",
+                    "",
+                    "DepositRunnableTask[] ds = new DepositRunnableTask[THREADS];",
+                    "WithdrawRunnableTask[] ws = new WithdrawRunnableTask[THREADS];",
+                    "",
+                    "for (int i = 0; i < THREADS; i++) {",
+                    "  ds[i] = new DepositRunnableTask(account, AMOUNT, REPETITIONS);",
+                    "  ws[i] = new WithdrawRunnableTask(account, AMOUNT, REPETITIONS);",
+                    "  (new Thread(ds[i])).start();",
+                    "  (new Thread(ws[i])).start();",
+                    "}",
+                    "",
+                    "int[] finishDs = new int[THREADS];",
+                    "int[] finishWs = new int[THREADS];",
+                    "",
+                    "while (true) {",
+                    "  for (int i = 0; i<THREADS; i++) {",
+                    "    if (ds[i].isFinish()) finishDs[i] = 1;",
+                    "    if (ws[i].isFinish()) finishWs[i] = 1;",
+                    "  }",
+                    "  int sum = java.util.stream.IntStream.of(finishDs).sum();",
+                    "  sum += java.util.stream.IntStream.of(finishWs).sum();",
+                    "  if (sum == 2 * THREADS) ",
+                    "    break;",
+                    "}",
+                    "System.out.println(account.getBalance());"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Results",
+                "pluginName": "Java",
+                "shellId": "bee5f161-4d00-4248-9de2-8e2d371fbf96"
+            },
+            "evaluatorReader": true,
+            "lineCount": 29
+        },
+        {
+            "id": "sectionS2ZAOP",
+            "type": "section",
+            "title": "Avoiding DeadLocks",
+            "level": 1,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "markdownRKkwQg",
+            "type": "markdown",
+            "body": [
+                "* You can use lock objects to ensure that shared data are in a consistent state when several threads access them.",
+                "* However, locks can lead to another problem.",
+                "",
+                ""
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "sectionJtC3iM",
+            "type": "section",
+            "title": "Deadlock",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "markdownmeVyGk",
+            "type": "markdown",
+            "body": [
+                "* One thread acquires a lock and then waits for another thread to do some essential work.",
+                "* If that other thread is currently waiting to acquire the same lock, neither of the two threads can proceed."
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "codefnQAdo",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "public void withdraw(double amount) ",
+                    "{",
+                    "  balanceChangeLock.lock();",
+                    "  try {",
+                    "    while (balance < amount) {",
+                    "      // Wait for the balance to grow.",
+                    "    }",
+                    "    . . .",
+                    "  } finally {",
+                    "    balanceChangeLock.unlock();",
+                    "  }",
+                    "}"
+                ]
+            },
+            "output": {
+                "state": {}
+            },
+            "evaluatorReader": true,
+            "lineCount": 12
+        },
+        {
+            "id": "sectionCeN2Sp",
+            "type": "section",
+            "title": "Condition Object",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "markdownNHAFPl",
+            "type": "markdown",
+            "body": [
+                "* To overcome this problem, we use a **condition object**.",
+                "* Condition objects allow a thread to temporarily release a lock.",
+                "* Each condition object belongs to a specific lock object."
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "sectionsFaoLd",
+            "type": "section",
+            "title": "`BankAccount` using Condition Object",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "markdownVlT4gs",
+            "type": "markdown",
+            "body": [
+                "* You obtain a condition object with the `newCondition()` method of the `Lock` interface.",
+                "* Calling `await()` on a condition object makes the current thread wait and allows another thread to acquire the lock object.",
+                "* To unblock, another thread must execute the `signalAll()` method _on the same condition object_."
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "codeOcK9h6",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "import java.util.concurrent.locks.Condition;",
+                    "import java.util.concurrent.locks.Lock;",
+                    "import java.util.concurrent.locks.ReentrantLock;",
+                    "",
+                    "public class BankAccount {",
+                    "    private double balance = 0;",
+                    "    private Lock balanceChangeLock;",
+                    "    private Condition sufficientFundsCondition;",
+                    "",
+                    "    public BankAccount() {",
+                    "        balanceChangeLock = new ReentrantLock();",
+                    "        // You obtain a condition object with the newCondition() method of the Lock interface.",
+                    "        sufficientFundsCondition = balanceChangeLock.newCondition();",
+                    "    }",
+                    "",
+                    "    public void deposit(double amount) {",
+                    "        balanceChangeLock.lock();",
+                    "        try {",
+                    "            balance += amount;",
+                    "            // To unblock, another thread must execute the signalAll() method on the same condition object.",
+                    "            sufficientFundsCondition.signalAll();",
+                    "        } finally {",
+                    "            balanceChangeLock.unlock();",
+                    "        }",
+                    "    }",
+                    "",
+                    "    public void withdraw(double amount) {",
+                    "        balanceChangeLock.lock();",
+                    "        try {",
+                    "            // Calling await() on a condition object makes the current thread wait ",
+                    "            // and allows another thread to acquire the lock object",
+                    "            while (balance < amount) ",
+                    "                sufficientFundsCondition.await();",
+                    "            balance -= amount;",
+                    "        } catch (InterruptedException e) {",
+                    "            e.printStackTrace();",
+                    "        } finally {",
+                    "            balanceChangeLock.unlock();",
+                    "        }",
+                    "    }",
+                    "",
+                    "    public double getBalance() {",
+                    "        return balance;",
+                    "    }",
+                    "",
+                    "}"
+                ]
+            },
+            "output": {
+                "state": {}
+            },
+            "evaluatorReader": true,
+            "lineCount": 46
+        },
+        {
+            "id": "sectionwU0Irp",
+            "type": "section",
+            "title": "Common Error",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": true
+        },
+        {
+            "id": "markdownHkct8F",
+            "type": "markdown",
+            "body": [
+                "## 1. Calling `await()` without calling `signalAll()`."
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "markdown8BkZO7",
+            "type": "markdown",
+            "body": [
+                "## 2. Calling `signalAll()` without locking the object."
+            ],
+            "evaluatorReader": false
         }
     ],
     "namespace": {}
