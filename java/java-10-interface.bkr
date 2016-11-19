@@ -995,7 +995,7 @@
                 "",
                 "In general, implementing the `clone` method require these steps:",
                 "1. Make the class implement the `Cloneable` interface type.",
-                "2. In the `clone` method, call `super.clone()`. Catch the `CloneNoteSupportedException` if the superclass is `Object`.",
+                "2. In the `clone` method, call `super.clone()`. Catch the `CloneNotSupportedException` if the superclass is `Object`.",
                 "3. Clone any mutable instance variables.",
                 "",
                 "```Java",
