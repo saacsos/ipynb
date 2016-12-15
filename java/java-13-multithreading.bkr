@@ -6,7 +6,7 @@
             "plugin": "HTML",
             "view": {
                 "cm": {
-                    "mode": "htmlmixed"
+                    "mode": "smartHTMLMode"
                 }
             }
         },
@@ -24,7 +24,7 @@
         {
             "name": "Java",
             "plugin": "Java",
-            "imports": "com.twosigma.beaker.chart.Color\ncom.twosigma.beaker.chart.GradientColor\ncom.twosigma.beaker.chart.legend.*\ncom.twosigma.beaker.chart.Filter\ncom.twosigma.beaker.BeakerProgressUpdate\ncom.twosigma.beaker.chart.xychart.*\ncom.twosigma.beaker.chart.xychart.plotitem.*\ncom.twosigma.beaker.chart.categoryplot.*\ncom.twosigma.beaker.chart.categoryplot.plotitem.*\ncom.twosigma.beaker.chart.histogram.*\ncom.twosigma.beaker.chart.treemap.*\ncom.twosigma.beaker.chart.treemap.util.*\nnet.sf.jtreemap.swing.*\ncom.twosigma.beaker.NamespaceClient\ncom.twosigma.beaker.chart.heatmap.HeatMap\ncom.twosigma.beaker.jvm.object.*\ncom.twosigma.beaker.easyform.*\ncom.twosigma.beaker.easyform.formitem.*",
+            "imports": "com.twosigma.beaker.chart.Color\ncom.twosigma.beaker.chart.GradientColor\ncom.twosigma.beaker.chart.legend.*\ncom.twosigma.beaker.chart.Filter\ncom.twosigma.beaker.BeakerProgressUpdate\ncom.twosigma.beaker.chart.xychart.*\ncom.twosigma.beaker.chart.xychart.plotitem.*\ncom.twosigma.beaker.chart.categoryplot.*\ncom.twosigma.beaker.chart.categoryplot.plotitem.*\ncom.twosigma.beaker.chart.histogram.*\ncom.twosigma.beaker.chart.treemap.*\ncom.twosigma.beaker.chart.treemap.util.*\nnet.sf.jtreemap.swing.*\ncom.twosigma.beaker.NamespaceClient\ncom.twosigma.beaker.chart.heatmap.HeatMap\ncom.twosigma.beaker.jvm.object.*\ncom.twosigma.beaker.easyform.*\ncom.twosigma.beaker.easyform.formitem.*\njava.util.concurrent.TimeUnit\ncom.twosigma.beaker.table.*\ncom.twosigma.beaker.table.format.*\ncom.twosigma.beaker.table.renderer.*\ncom.twosigma.beaker.table.highlight.*",
             "view": {
                 "cm": {
                     "mode": "text/x-java"
@@ -47,7 +47,8 @@
             "title": "Running Threads",
             "level": 1,
             "evaluatorReader": false,
-            "collapsed": true
+            "collapsed": true,
+            "isError": false
         },
         {
             "id": "markdownj8FgDo",
@@ -71,13 +72,14 @@
             "title": "Step 0: Runnable interface",
             "level": 2,
             "evaluatorReader": false,
-            "collapsed": true
+            "collapsed": true,
+            "isError": false
         },
         {
             "id": "markdowncFVLHO",
             "type": "markdown",
             "body": [
-                "`java.util.Runnable` interface has method `run()`",
+                "`java.lang.Runnable` interface has method `run()`",
                 "```Java",
                 "public interface Runnable",
                 "{",
@@ -125,7 +127,8 @@
             "title": "Step 1: Write your task into `run()` method",
             "level": 2,
             "evaluatorReader": false,
-            "collapsed": true
+            "collapsed": true,
+            "isError": false
         },
         {
             "id": "codeiI9DuV",
@@ -165,17 +168,18 @@
         {
             "id": "sectionU3pAET",
             "type": "section",
-            "title": "Step 3: Create an object of your task",
+            "title": "Step 2: Create an object of your task",
             "level": 2,
             "evaluatorReader": false,
-            "collapsed": true
+            "collapsed": true,
+            "isError": false
         },
         {
             "id": "markdownan4GZU",
             "type": "markdown",
             "body": [
                 "```Java",
-                "Runnable r = new MyRunnableTask(\"Hello Thread\");",
+                "Runnable r = new MyRunnableTask(myBankAccount, 100);",
                 "```"
             ],
             "evaluatorReader": false
@@ -183,10 +187,11 @@
         {
             "id": "sectionMiSFbg",
             "type": "section",
-            "title": "Step 4: Construct a `Thread` object from the runnable object",
+            "title": "Step 3: Construct a `Thread` object from the runnable object",
             "level": 2,
             "evaluatorReader": false,
-            "collapsed": true
+            "collapsed": true,
+            "isError": false
         },
         {
             "id": "markdownumA9qt",
@@ -201,10 +206,11 @@
         {
             "id": "sectionMFneo6",
             "type": "section",
-            "title": "Step 5: Call the `start()` method to start the thread",
+            "title": "Step 4: Call the `start()` method to start the thread",
             "level": 2,
             "evaluatorReader": false,
-            "collapsed": true
+            "collapsed": true,
+            "isError": false
         },
         {
             "id": "markdownFivwG4",
@@ -222,7 +228,8 @@
             "title": "Hello Thread",
             "level": 2,
             "evaluatorReader": false,
-            "collapsed": true
+            "collapsed": true,
+            "isError": false
         },
         {
             "id": "code4VG7pd",
@@ -260,7 +267,8 @@
             "title": "`Thread.sleep(milliseconds)`",
             "level": 2,
             "evaluatorReader": false,
-            "collapsed": true
+            "collapsed": true,
+            "isError": false
         },
         {
             "id": "markdownIZ6ja7",
@@ -368,7 +376,8 @@
             "title": "Multithreading",
             "level": 2,
             "evaluatorReader": false,
-            "collapsed": true
+            "collapsed": true,
+            "isError": false
         },
         {
             "id": "sectionmWdjZE",
@@ -376,7 +385,8 @@
             "title": "Multithreading on each account",
             "level": 3,
             "evaluatorReader": false,
-            "collapsed": true
+            "collapsed": true,
+            "isError": false
         },
         {
             "id": "codeefWPnw",
@@ -429,7 +439,8 @@
             "title": "Multithreading on same account",
             "level": 3,
             "evaluatorReader": false,
-            "collapsed": true
+            "collapsed": true,
+            "isError": false
         },
         {
             "id": "codeT90o7X",
@@ -479,7 +490,8 @@
             "title": "Thread Pools with `ExecutorService`",
             "level": 2,
             "evaluatorReader": false,
-            "collapsed": true
+            "collapsed": true,
+            "isError": false
         },
         {
             "id": "markdown5Tlndp",
@@ -541,7 +553,8 @@
             "title": "Terminating Threads",
             "level": 1,
             "evaluatorReader": false,
-            "collapsed": true
+            "collapsed": true,
+            "isError": false
         },
         {
             "id": "markdown6pHZ4J",
@@ -565,7 +578,8 @@
             "title": "`GuessNumber`",
             "level": 2,
             "evaluatorReader": false,
-            "collapsed": true
+            "collapsed": true,
+            "isError": false
         },
         {
             "id": "codeeHccNM",
@@ -601,7 +615,8 @@
             "title": "`GuessNumberListener`",
             "level": 2,
             "evaluatorReader": false,
-            "collapsed": true
+            "collapsed": true,
+            "isError": false
         },
         {
             "id": "codeIXee7X",
@@ -637,7 +652,8 @@
             "title": "`GuessRunnableTask`",
             "level": 2,
             "evaluatorReader": false,
-            "collapsed": true
+            "collapsed": true,
+            "isError": false
         },
         {
             "id": "codeXPy19u",
@@ -702,7 +718,8 @@
             "title": "Guess Number with Multithreading",
             "level": 2,
             "evaluatorReader": false,
-            "collapsed": true
+            "collapsed": true,
+            "isError": false
         },
         {
             "id": "coderD8c1O",
@@ -766,7 +783,8 @@
             "title": "Race Conditions",
             "level": 1,
             "evaluatorReader": false,
-            "collapsed": true
+            "collapsed": true,
+            "isError": false
         },
         {
             "id": "markdownfHqVDI",
@@ -782,7 +800,8 @@
             "title": "`BankAccount`",
             "level": 2,
             "evaluatorReader": false,
-            "collapsed": true
+            "collapsed": true,
+            "isError": false
         },
         {
             "id": "codejfqR8G",
@@ -823,7 +842,8 @@
             "title": "`DepositRunnableTask`",
             "level": 2,
             "evaluatorReader": false,
-            "collapsed": true
+            "collapsed": true,
+            "isError": false
         },
         {
             "id": "codewU2l3O",
@@ -872,7 +892,8 @@
             "title": "`WithdrawRunnableTask`",
             "level": 2,
             "evaluatorReader": false,
-            "collapsed": true
+            "collapsed": true,
+            "isError": false
         },
         {
             "id": "codef4C7qw",
@@ -921,15 +942,8 @@
             "title": "BankAccount Race Conditions",
             "level": 2,
             "evaluatorReader": false,
-            "collapsed": true
-        },
-        {
-            "id": "markdownEtjrUR",
-            "type": "markdown",
-            "body": [
-                "Balance should be 0"
-            ],
-            "evaluatorReader": false
+            "collapsed": true,
+            "isError": false
         },
         {
             "id": "codeQJE5MP",
@@ -978,12 +992,21 @@
             "lineCount": 29
         },
         {
+            "id": "markdownEtjrUR",
+            "type": "markdown",
+            "body": [
+                "Balance should be 0"
+            ],
+            "evaluatorReader": false
+        },
+        {
             "id": "sectionSeJbet",
             "type": "section",
             "title": "Synchronizing Object Access",
             "level": 1,
             "evaluatorReader": false,
-            "collapsed": true
+            "collapsed": true,
+            "isError": false
         },
         {
             "id": "section12nvYb",
@@ -991,7 +1014,8 @@
             "title": "Lock object",
             "level": 2,
             "evaluatorReader": false,
-            "collapsed": true
+            "collapsed": true,
+            "isError": false
         },
         {
             "id": "markdownyOeCxZ",
@@ -999,7 +1023,7 @@
             "body": [
                 "* The lock object is used to control the threads that want to manipulate a shared resource.",
                 "* The Java library defines a `Lock` interface and several classes that implement this interface.",
-                "* The `ReentranLock` class is the most commonly used lock class.",
+                "* The `ReentrantLock` class is the most commonly used lock class.",
                 "",
                 "```Java",
                 "pulbic class BankAccount",
@@ -1065,7 +1089,8 @@
             "title": "`BankAccount` using `Lock`",
             "level": 2,
             "evaluatorReader": false,
-            "collapsed": true
+            "collapsed": true,
+            "isError": false
         },
         {
             "id": "codeHK8pR7",
@@ -1120,7 +1145,8 @@
             "title": "BankAccount Race Conditions with Lock",
             "level": 2,
             "evaluatorReader": false,
-            "collapsed": true
+            "collapsed": true,
+            "isError": false
         },
         {
             "id": "codeKGVi2a",
@@ -1174,7 +1200,8 @@
             "title": "Avoiding DeadLocks",
             "level": 1,
             "evaluatorReader": false,
-            "collapsed": true
+            "collapsed": true,
+            "isError": false
         },
         {
             "id": "markdownRKkwQg",
@@ -1193,7 +1220,8 @@
             "title": "Deadlock",
             "level": 2,
             "evaluatorReader": false,
-            "collapsed": true
+            "collapsed": true,
+            "isError": false
         },
         {
             "id": "markdownmeVyGk",
@@ -1236,7 +1264,8 @@
             "title": "Condition Object",
             "level": 2,
             "evaluatorReader": false,
-            "collapsed": true
+            "collapsed": true,
+            "isError": false
         },
         {
             "id": "markdownNHAFPl",
@@ -1254,7 +1283,8 @@
             "title": "`BankAccount` using Condition Object",
             "level": 2,
             "evaluatorReader": false,
-            "collapsed": true
+            "collapsed": true,
+            "isError": false
         },
         {
             "id": "markdownVlT4gs",
@@ -1332,7 +1362,8 @@
             "title": "Common Error",
             "level": 2,
             "evaluatorReader": false,
-            "collapsed": true
+            "collapsed": true,
+            "isError": false
         },
         {
             "id": "markdownHkct8F",
